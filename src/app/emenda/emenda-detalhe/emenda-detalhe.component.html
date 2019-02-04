@@ -1,0 +1,232 @@
+<div class="container">
+  <br>
+  <div class="card">
+    <div class="card-body">
+      <div>
+        <a class="btn btn-azul-padrao text-white" data-toggle="collapse" href="#collapseEmenda" role="button" aria-expanded="true" aria-controls="collapseExample">
+          Emenda Parlamentar
+        </a>
+      </div>
+
+      <div class="collapse" id="collapseEmenda">
+        <div class="card card-body shadow p-3 mb-3 bg-white rounded">
+          
+            <!-- Row 1 -->
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label class="negrito">Número da Emenda</label>
+                <p>{{emenda?.emenda}}</p>
+              </div>
+              <div class="form-group col-md-5">
+                <label class="negrito">Órgão</label>
+                <p>{{emenda?.orgao}}</p>
+              </div>
+              <div class="form-group col-md-2">
+                <label class="negrito">Ano</label>
+                <p>{{emenda?.ano}}</p>
+              </div>
+              <div class="form-group col-md-2">
+                <label class="negrito">Valor</label>
+                <p>{{emenda?.valor | currency: 'BRL': true}}</p>
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="form-row">
+              <div class="form-group col-md-5">
+                <label class="negrito">Autor</label>
+                <p>{{emenda?.autor}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Cargo</label>
+                <p>{{emenda?.cargo}}</p>
+              </div>
+              <div class="form-group col-md-3">
+                <label class="negrito">Partido</label>
+                <p>{{emenda?.partido}}</p>
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label class="negrito">GND</label>
+                <p>{{emenda?.gnd}}</p>
+              </div>
+              <div class="form-group col-md-6">
+                <label class="negrito">Fonte</label>
+                <p>{{emenda?.fonte}}</p>
+              </div>
+              <div class="form-group col-md-3">
+                <label class="negrito">Localizador</label>
+                <p>{{emenda?.localizador}}</p>
+              </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label class="negrito">Programa</label>
+                <p>{{emenda?.programa}}</p>
+              </div>
+              <div class="form-group col-md-3">
+                <label class="negrito">Ação</label>
+                <p>{{emenda?.acao}}</p>
+              </div>
+              <div class="form-group col-md-3">
+                <label class="negrito">Modalidade</label>
+                <p>{{emenda?.modalidade}}</p>
+              </div>
+              <div class="form-group col-md-3">
+                <label class="negrito">Beneficiário</label>
+                <p>{{emenda?.beneficiario}}</p>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+
+      <div>
+        <a class="btn btn-azul-padrao text-white" data-toggle="collapse" href="#collapseExecucao" role="button" aria-expanded="false" aria-controls="collapseExample">
+          Execução
+        </a>
+      </div>
+      <div class="collapse" id="collapseExecucao">
+        <div class="card card-body shadow p-3 mb-3 bg-white rounded">
+          
+            <!-- Row 1 -->
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label class="negrito">Instrumento</label>
+                <p>{{emenda?.instrumento}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Objeto</label>
+                <p>{{emenda?.objeto}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Observação</label>
+                <p>{{emenda?.observacao}}</p>
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label class="negrito">Número do Siconv</label>
+                <p>{{emenda?.siconv}}</p>
+              </div>
+              <div class="form-group col-md-6">
+                <label class="negrito">Proposta/Siconv</label>
+                <p>{{emenda?.proposta_siconv}}</p>
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label class="negrito">Nota de Empenho</label>
+                <p>{{emenda?.nota_empenho}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Limite de Empenho</label>
+                <p>{{emenda?.limite_empenho}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Valor empenho</label>
+                <p>{{emenda?.valor_empenhado | currency: 'BRL': true}}</p>
+              </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label class="negrito">Data do início do Convênio</label>
+                <p>{{emenda?.inicio_convenio | date: 'dd/MM/yyyy'}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Data do fim do Convênio</label>
+                <p>{{emenda?.fim_convenio | date: 'dd/MM/yyyy'}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Valor do Convênio</label>
+                <p>{{emenda?.valor_convenio | currency: 'BRL': true}}</p>
+              </div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label class="negrito">Valor de repasse</label>
+                <p>{{emenda?.valor_repasse | currency: 'BRL': true}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Valor de Contrapartida</label>
+                <p>{{emenda?.valor_contrapartida | currency: 'BRL': true}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Impedimento</label>
+                <p>{{emenda?.impedimento}}</p>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+
+      <div>
+        <a class="btn btn-azul-padrao text-white" data-toggle="collapse" href="#collapseAlarme" role="button" aria-expanded="false" aria-controls="collapseExample">
+          Alarmes e Adicionais
+        </a>
+      </div>
+      <div class="collapse" id="collapseAlarme">
+        <div class="card card-body shadow p-3 mb-3 bg-white rounded">
+          
+            <!-- Row 1 -->
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label class="negrito">Lei</label>
+                <p>{{emenda?.lei}}</p>
+              </div>
+              <div class="form-group col-md-9">
+                <label class="negrito">Descrição da Lei</label>
+                <p>{{emenda?.desc_lei}}</p>
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label class="negrito">Pendência</label>
+                <p>{{emenda?.pendencia}}</p>
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label class="negrito">Data para indicação do Beneficiário</label>
+                <p>{{emenda?.indicacao_beneficiario | date: 'dd/MM/yyyy'}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Data de Apresentação de proposta</label>
+                <p>{{emenda?.apresentacao_proposta | date: 'dd/MM/yyyy'}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Data para análise de proposta</label>
+                <p>{{emenda?.analise_proposta | date: 'dd/MM/yyyy'}}</p>
+              </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label class="negrito">Data Limite para Celebração do Convênio</label>
+                <p>{{emenda?.celebracao_convenio | date: 'dd/MM/yyyy'}}</p>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

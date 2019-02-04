@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #f5f5f5;
+}
+
+.bg-azul-padrao {
+    background-color: #01579b;
+}
+
+.btn-azul-padrao {
+    /* margin-top: 0.5%; */
+    margin-bottom: 1%; 
+    color: #fff;
+    background-color: #01579b;
+    border-color: #01579b;
+}
+
