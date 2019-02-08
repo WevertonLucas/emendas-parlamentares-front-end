@@ -7,41 +7,46 @@
           Emenda Parlamentar
         </a>
       </div>
-
+      
       <div class="collapse" id="collapseEmenda">
         <div class="card card-body shadow p-3 mb-3 bg-white rounded">
-          
+            
             <!-- Row 1 -->
             <div class="form-row">
               <div class="form-group col-md-3">
                 <label class="negrito">Número da Emenda</label>
-                <p>{{emenda?.emenda}}</p>
+                <p>{{emenda?.num_emenda}}</p>
               </div>
-              <div class="form-group col-md-5">
-                <label class="negrito">Órgão</label>
-                <p>{{emenda?.orgao}}</p>
-              </div>
-              <div class="form-group col-md-2">
+              <div class="form-group col-md-3">
                 <label class="negrito">Ano</label>
                 <p>{{emenda?.ano}}</p>
               </div>
               <div class="form-group col-md-2">
-                <label class="negrito">Valor</label>
-                <p>{{emenda?.valor | currency: 'BRL': true}}</p>
+                <label class="negrito">UF</label>
+                <p>{{emenda?.uf}}</p>
               </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Município</label>
+                <p>{{emenda?.nome_municipio}}</p>
+              </div>
+              
             </div>
 
             <!-- Row 2 -->
             <div class="form-row">
+              <div class="form-group col-md-3">
+                <label class="negrito">Valor</label>
+                <p>{{emenda?.valor_emenda | currency: 'BRL': true}}</p>
+              </div>
               <div class="form-group col-md-5">
                 <label class="negrito">Autor</label>
                 <p>{{emenda?.autor}}</p>
               </div>
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-2">
                 <label class="negrito">Cargo</label>
                 <p>{{emenda?.cargo}}</p>
               </div>
-              <div class="form-group col-md-3">
+              <div class="form-group col-md-2">
                 <label class="negrito">Partido</label>
                 <p>{{emenda?.partido}}</p>
               </div>
@@ -50,14 +55,18 @@
             <!-- Row 3 -->
             <div class="form-row">
               <div class="form-group col-md-3">
-                <label class="negrito">GND</label>
-                <p>{{emenda?.gnd}}</p>
-              </div>
-              <div class="form-group col-md-6">
                 <label class="negrito">Fonte</label>
                 <p>{{emenda?.fonte}}</p>
               </div>
               <div class="form-group col-md-3">
+                <label class="negrito">GND</label>
+                <p>{{emenda?.gnd}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Modalidade</label>
+                <p>{{emenda?.modalidade}}</p>
+              </div>
+              <div class="form-group col-md-2">
                 <label class="negrito">Localizador</label>
                 <p>{{emenda?.localizador}}</p>
               </div>
@@ -67,19 +76,31 @@
             <div class="form-row">
               <div class="form-group col-md-3">
                 <label class="negrito">Programa</label>
-                <p>{{emenda?.programa}}</p>
+                <p>{{emenda?.programa_governo}}</p>
               </div>
               <div class="form-group col-md-3">
                 <label class="negrito">Ação</label>
                 <p>{{emenda?.acao}}</p>
               </div>
               <div class="form-group col-md-3">
-                <label class="negrito">Modalidade</label>
-                <p>{{emenda?.modalidade}}</p>
+                <label class="negrito">Projeto</label>
+                <p>{{emenda?.projeto}}</p>
               </div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="form-row">
               <div class="form-group col-md-3">
+                <label class="negrito">CNPJ do Beneficiário</label>
+                <p>{{emenda?.cnpj_beneficiario}}</p>
+              </div>
+              <div class="form-group col-md-5">
                 <label class="negrito">Beneficiário</label>
                 <p>{{emenda?.beneficiario}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Status</label>
+                <p>{{emenda?.status}}</p>
               </div>
             </div>
           
@@ -100,61 +121,41 @@
                 <label class="negrito">Instrumento</label>
                 <p>{{emenda?.instrumento}}</p>
               </div>
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-8">
                 <label class="negrito">Objeto</label>
-                <p>{{emenda?.objeto}}</p>
-              </div>
-              <div class="form-group col-md-4">
-                <label class="negrito">Observação</label>
-                <p>{{emenda?.observacao}}</p>
+                <p>{{emenda?.obejeto}}</p>
               </div>
             </div>
 
             <!-- Row 2 -->
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label class="negrito">Número do Siconv</label>
-                <p>{{emenda?.siconv}}</p>
-              </div>
-              <div class="form-group col-md-6">
                 <label class="negrito">Proposta/Siconv</label>
                 <p>{{emenda?.proposta_siconv}}</p>
+              </div>
+              <div class="form-group col-md-6">
+                <label class="negrito">Número do Siconv</label>
+                <p>{{emenda?.convenio_siconv}}</p>
               </div>
             </div>
 
             <!-- Row 3 -->
             <div class="form-row">
               <div class="form-group col-md-4">
-                <label class="negrito">Nota de Empenho</label>
-                <p>{{emenda?.nota_empenho}}</p>
-              </div>
-              <div class="form-group col-md-4">
                 <label class="negrito">Limite de Empenho</label>
-                <p>{{emenda?.limite_empenho}}</p>
+                <p>{{emenda?.lim_empenho}}</p>
               </div>
               <div class="form-group col-md-4">
                 <label class="negrito">Valor empenho</label>
-                <p>{{emenda?.valor_empenhado | currency: 'BRL': true}}</p>
+                <p>{{emenda?.empenhado | currency: 'BRL': true}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Nota de Empenho</label>
+                <p>{{emenda?.nota_empenho}}</p>
               </div>
             </div>
 
             <!-- Row 4 -->
-            <div class="form-row">
-              <div class="form-group col-md-4">
-                <label class="negrito">Data do início do Convênio</label>
-                <p>{{emenda?.inicio_convenio | date: 'dd/MM/yyyy'}}</p>
-              </div>
-              <div class="form-group col-md-4">
-                <label class="negrito">Data do fim do Convênio</label>
-                <p>{{emenda?.fim_convenio | date: 'dd/MM/yyyy'}}</p>
-              </div>
-              <div class="form-group col-md-4">
-                <label class="negrito">Valor do Convênio</label>
-                <p>{{emenda?.valor_convenio | currency: 'BRL': true}}</p>
-              </div>
-            </div>
-
-            <!-- Row 5 -->
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label class="negrito">Valor de repasse</label>
@@ -165,11 +166,42 @@
                 <p>{{emenda?.valor_contrapartida | currency: 'BRL': true}}</p>
               </div>
               <div class="form-group col-md-4">
+                <label class="negrito">Valor Global</label>
+                <p>{{(emenda?.valor_repasse) + (emenda?.valor_contrapartida) | currency: 'BRL': true}}</p>
+              </div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label class="negrito">Data do início do Convênio</label>
+                <p>{{emenda?.dt_ini_conv | date: 'dd/MM/yyyy'}}</p>
+              </div>
+              <div class="form-group col-md-4">
+                <label class="negrito">Data do fim do Convênio</label>
+                <p>{{emenda?.dt_fim_conv | date: 'dd/MM/yyyy'}}</p>
+              </div>
+              <div class="form-group col-md-4">
                 <label class="negrito">Impedimento</label>
                 <p>{{emenda?.impedimento}}</p>
               </div>
             </div>
-          
+
+            <!-- Row 6 -->
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label class="negrito">Observação</label>
+                <p>{{emenda?.obs}}</p>
+              </div>
+            </div>
+
+            <!-- Row 7 -->
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label class="negrito">Pendência</label>
+                <p>{{emenda?.pendencia}}</p>
+              </div>
+            </div>
         </div>
       </div>
 
@@ -183,45 +215,37 @@
           
             <!-- Row 1 -->
             <div class="form-row">
-              <div class="form-group col-md-3">
-                <label class="negrito">Lei</label>
-                <p>{{emenda?.lei}}</p>
-              </div>
-              <div class="form-group col-md-9">
-                <label class="negrito">Descrição da Lei</label>
-                <p>{{emenda?.desc_lei}}</p>
+              <div class="form-group col-md-12">
+                <label class="negrito">Legislacao</label>
+                <p>{{emenda?.legislacao}}</p>
               </div>
             </div>
 
             <!-- Row 2 -->
             <div class="form-row">
               <div class="form-group col-md-12">
-                <label class="negrito">Pendência</label>
-                <p>{{emenda?.pendencia}}</p>
+                <label class="negrito">Descrição</label>
+                <p>{{emenda?.descricao}}</p>
               </div>
             </div>
 
             <!-- Row 3 -->
             <div class="form-row">
-              <div class="form-group col-md-4">
-                <label class="negrito">Data para indicação do Beneficiário</label>
-                <p>{{emenda?.indicacao_beneficiario | date: 'dd/MM/yyyy'}}</p>
+              <div class="form-group col-md-3">
+                <label class="negrito">Indicação do Beneficiário</label>
+                <p>{{emenda?.dt_indicacao_beneficiario | date: 'dd/MM/yyyy'}}</p>
               </div>
-              <div class="form-group col-md-4">
-                <label class="negrito">Data de Apresentação de proposta</label>
-                <p>{{emenda?.apresentacao_proposta | date: 'dd/MM/yyyy'}}</p>
+              <div class="form-group col-md-3">
+                <label class="negrito">Apresentação de proposta</label>
+                <p>{{emenda?.dt_apresentacao_proposta | date: 'dd/MM/yyyy'}}</p>
               </div>
-              <div class="form-group col-md-4">
-                <label class="negrito">Data para análise de proposta</label>
-                <p>{{emenda?.analise_proposta | date: 'dd/MM/yyyy'}}</p>
+              <div class="form-group col-md-3">
+                <label class="negrito">Análise de proposta</label>
+                <p>{{emenda?.dt_indicacao_proposta | date: 'dd/MM/yyyy'}}</p>
               </div>
-            </div>
-
-            <!-- Row 4 -->
-            <div class="form-row">
-              <div class="form-group col-md-12">
-                <label class="negrito">Data Limite para Celebração do Convênio</label>
-                <p>{{emenda?.celebracao_convenio | date: 'dd/MM/yyyy'}}</p>
+              <div class="form-group col-md-3">
+                <label class="negrito">Celebração do Convênio</label>
+                <p>{{emenda?.dt_limite_celebracao | date: 'dd/MM/yyyy'}}</p>
               </div>
             </div>
           
