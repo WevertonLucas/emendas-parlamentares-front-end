@@ -1,0 +1,310 @@
+<div class="container">
+  <br>
+  <div class="card">
+    <div class="card-body">
+      
+      <form #formEmenda="ngForm" novalidate>
+        <!-- Fomulário de Emenda Parlamentar -->
+        <h5 class="p-3 mb-2 bg-azul-padrao text-white">Emenda Parlamentar</h5>
+        <br>
+        <!-- Row 1 -->
+        <div class="form-row">
+          <div class="col-4 mb-3">
+            <label>Número da Emenda</label>
+            <div class="input-group">
+              <input type="text" class="form-control is-invalid" name="num_emenda" ngModel placeholder="Número da Emenda" required>
+              <div class="invalid-feedback">
+                A Emenda é obrigatório.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-1 mb-3">
+            <label>Ano</label>
+            <select class="custom-select is-valid" name="ano" ngModel>
+              <option *ngFor="let legislacao of legislacoes" value="{{legislacao.ano}}">{{legislacao.ano}}</option>
+            </select>
+          </div>
+
+          <div class="col-1 mb-3">
+            <label>UF</label>
+            <select class="custom-select" name="uf" ngModel (change)="getMunicipiosByUf(formEmenda.value.uf)">
+              <option *ngFor="let uf of ufs" value="{{uf.uf}}">{{uf.uf}}</option>
+            </select>
+          </div>
+
+          <div class="col-6 mb-3">
+            <label>Município</label>
+            <select class="custom-select" name="cod_ibge" ngModel>
+              <option *ngFor="let municipio of municipios" value="{{municipio.cod_ibge}}">{{municipio.nome_municipio}}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="form-row">
+          <div class="col-2 mb-3">
+            <label>Valor da Emenda</label>
+            <input type="text" class="form-control" name="valor_emenda" ngModel  placeholder="Valor da Emenda">
+          </div>
+
+          <div class="col-4 mb-3">
+            <label>Autor</label>
+            <select class="custom-select" name="cod_autor" ngModel (change)="getAutorById(formEmenda.value.cod_autor)">
+              <option *ngFor="let autor of autores" value="{{autor.cod_autor}}">{{autor.autor}}</option>
+            </select>
+          </div>
+
+          <div class="col-3 mb-3">
+            <label>Cargo</label>
+            <input type="text" class="form-control" value="{{autor?.cargo}}" disabled>
+          </div>
+
+          <div class="col-3 mb-3">
+            <label>Partido</label>
+            <input type="text" class="form-control" value="{{autor?.partido}}" placeholder="Partido" disabled>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="form-row">
+          <div class="col-3 mb-3">
+            <label>Fonte</label>
+            <select class="custom-select" name="cod_fonte" ngModel>
+              <option *ngFor="let fonte of fontes" value="{{fonte.cod_fonte}}">{{fonte.descricao}}</option>
+            </select>
+          </div>
+
+          <div class="col-3 mb-3">
+            <label>GND</label>
+            <select class="custom-select" name="cod_gnd" ngModel>
+              <option *ngFor="let gnd of gnds" value="{{gnd.cod_gnd}}">{{gnd.descricao}}</option>
+            </select>
+          </div>
+
+          <div class="col-3 mb-3">
+            <label>Modalidade</label>
+            <select class="custom-select" name="cod_modalidade" ngModel>
+              <option *ngFor="let modalidade of modalidades" value="{{modalidade.cod_modalidade}}">{{modalidade.descricao}}</option>
+            </select>
+          </div>
+
+          <div class="col-3 mb-3">
+            <label>Localizador</label>
+            <input type="text" class="form-control" name="localizador" ngModel placeholder="Localizador">
+          </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="form-row">
+          <div class="col-3 mb-3">
+            <label>Programa</label>
+            <select class="custom-select" name="cod_programa_governo" ngModel>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+
+          <div class="col-3 mb-3">
+            <label>Ação</label>
+            <select class="custom-select" name="cod_acao_orcamentaria" ngModel>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+
+          <div class="col-3 mb-3">
+            <label>Projeto</label>
+            <select class="custom-select">
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 5 -->
+        <div class="form-row">
+          <div class="col-3 mb-3">
+            <label>CNPJ do Beneficiário</label>
+            <input type="text" class="form-control" name="cnpj_beneficiario" ngModel placeholder="CNPJ do Beneficiário">
+          </div>
+
+          <div class="col-6 mb-3">
+            <label>Beneficiário</label>
+            <input type="text" class="form-control" name="beneficiario" ngModel placeholder="Beneficiário">
+          </div>
+
+          <div class="col-3 mb-3">
+            <label>Status</label>
+            <select class="custom-select" name="cod_status" ngModel>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Fomulário de Execuçãor -->
+        <br>
+        <h5 class="p-3 mb-2 bg-azul-padrao text-white">Execução</h5>
+        <br>
+        <!-- Row 1 -->
+        <div class="form-row">
+          <div class="col-4 mb-3">
+            <label>Instrumento</label>
+            <select class="custom-select" name="cod_instrumento" ngModel>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+
+          <div class="col-8 mb-3">
+            <label>Objeto</label>
+            <input type="text" class="form-control" name="objeto" ngModel placeholder="Objeto">
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="form-row">
+          <div class="col-4 mb-3">
+            <label>Proposta/Siconv</label>
+            <input type="text" class="form-control" name="proposta_siconv" ngModel placeholder="Proposta/Siconv">
+          </div>
+
+          <div class="col-4 mb-3">
+            <label>Número do Siconv</label>
+            <input type="text" class="form-control" name="convenio_siconv" ngModel placeholder="Número do Siconv">
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="form-row">
+          <div class="col-4 mb-3">
+            <label>Limite de Empenho</label>
+            <input type="text" class="form-control" name="lim_empenho" ngModel placeholder="Limite de Empenho">
+          </div>
+
+          <div class="col-4 mb-3">
+            <label>Valor Empenhado</label>
+            <input type="text" class="form-control" name="valor_empenho" ngModel placeholder="Valor Empenhado">
+          </div>
+
+          <div class="col-4 mb-3">
+            <label>Nota de Empenho</label>
+            <input type="text" class="form-control" name="nota_empenho" ngModel placeholder="Nota de Empenho">
+          </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="form-row">
+          <div class="col-4 mb-3">
+            <label>Valor de Repasse</label>
+            <input type="text" class="form-control" name="valor_repasse" ngModel placeholder="Valor de Repasse">
+          </div>
+
+          <div class="col-4 mb-3">
+            <label>Valor de Contrapartida</label>
+            <input type="text" class="form-control" name="valor_contrapartida" ngModel placeholder="Valor de Contrapartida">
+          </div>
+
+          <div class="col-4 mb-3">
+            <label>Valor Global</label>
+            <input type="text" class="form-control" placeholder="Valor Global" disabled>
+          </div>
+        </div>
+
+        <!-- Row 5 -->
+        <div class="form-row">
+          <div class="col-4 mb-3">
+            <label>Data do Início do Convênio</label>
+            <input type="date" name="dt_ini_conv" ngModel class="form-control">
+          </div>
+
+          <div class="col-4 mb-3">
+            <label>Data do Fim do Convênio</label>
+            <input type="date" name="dt_fim_conv" ngModel class="form-control">
+          </div>
+
+          <div class="col-3 mb-3 offset-sm-1">
+            <label>Impedimento</label>
+            <div class="row">
+              <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                <label class="custom-control-label" for="customRadio1">Sim</label>
+              </div>
+              <div class="custom-control custom-radio offset-sm-1">
+                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                <label class="custom-control-label" for="customRadio2">Não</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 6 -->
+        <div class="form-row">
+          <div class="col-12 mb-3">
+            <label>Observação</label>
+            <textarea type="text" class="form-control" name="obs" ngModel placeholder="Observação" rows="3"></textarea>
+          </div>
+        </div>
+
+        <!-- Row 7 -->
+        <div class="form-row">
+          <div class="col-12 mb-3">
+            <label>Pendência</label>
+            <textarea type="text" class="form-control" name="pendencia" ngModel placeholder="Pendência" rows="3"></textarea>
+          </div>
+        </div>
+
+         <!-- Fomulário de Alarmes e Adicionais -->
+        <br>
+        <h5 class="p-3 mb-2 bg-azul-padrao text-white">Alarmes e Adicionais</h5>
+        <br>
+        <!-- Row 1 -->
+        <div class="form-row">
+          <div class="col-12 mb-3">
+            <label>Legislação</label>
+            <textarea type="text" class="form-control" placeholder="Legislação" rows="3" value="{{legislacaoInfo?.lei}}" disabled></textarea>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="form-row">
+            <div class="col-12 mb-3">
+              <label>Descrição</label>
+              <textarea type="text" class="form-control" placeholder="Descrição" rows="3" value="{{legislacaoInfo?.legislacao}}" disabled></textarea>
+            </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="form-row">
+          <div class="col-3 mb-3">
+            <label>Indicação de Beneficiário</label>
+            <input type="date" class="form-control" disabled>
+          </div>
+
+          <div class="col-3 mb-3">
+            <label>Apresentação de Propósta</label>
+            <input type="date" class="form-control" disabled>
+          </div>
+
+          <div class="col-3 mb-3">
+            <label>Análise de Propósta</label>
+            <input type="date" class="form-control" disabled>
+          </div>
+
+          <div class="col-3 mb-3">
+              <label>Celebração do Convênio</label>
+              <input type="date" class="form-control" disabled>
+            </div>
+        </div>
+
+        <button class="btn btn-azul-padrao text-white offset-md-11" type="submit" [disabled]="!formEmenda.valid">Salvar</button>
+      </form>
+    </div>
+  </div>
+</div>

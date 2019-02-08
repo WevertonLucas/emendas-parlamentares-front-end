@@ -3,9 +3,9 @@
     <div class="card">
         <div class="card-body">
             <div>
-                <a href="#" class="btn btn-azul-padrao text-white disabled">Adicionar</a>
+                <a [routerLink]="['/emendas/novo']" class="btn btn-azul-padrao text-white">Adicionar</a>
             </div>
-
+            
             <table class="table table-striped table-bordered table-responsive table-sm">
                 <thead>
                     <tr class="center text-header">
@@ -16,26 +16,28 @@
                         <th scope="col" class="col-cargo">Cargo</th>
                         <th scope="col" class="col-beneficiario">Beneficiário</th>
                         <th scope="col" class="col-valor">Valor</th>
+                        <th scope="col" class="col-status">Status</th>
                         <th scope="col" class="col-acao">Ação</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let emenda of emendas" class="text-table">
                         <td>{{emenda.ano}}</td>
-                        <td>{{emenda.emenda}}</td>
+                        <td>{{emenda.num_emenda}}</td>
                         <td>{{emenda.autor}}</td>
                         <td>{{emenda.partido}}</td>
                         <td>{{emenda.cargo}}</td>
                         <td>{{emenda.beneficiario}}</td>
-                        <td>{{emenda.valor | currency: 'BRL': true}}</td>
+                        <td>{{emenda.valor_emenda | currency: 'BRL': true}}</td>
+                        <td>{{emenda.status}}</td>
                         <td class="center">
-                            <a [routerLink]="['/emendas', emenda.id]">
+                            <a [routerLink]="['/emendas', emenda.cod_emenda, 'detalhe']">
                                 <i class="fas fa-search"></i>
                             </a>
-                            <!-- <a href="#">
+                            <a [routerLink]="['/emendas', emenda.cod_emenda]">
                                 <i class="fas fa-pencil-alt col-1"></i>
                             </a>
-                            <a href="#">
+                            <!-- <a href="#">
                                 <i class="fas fa-trash-alt col-1"></i>
                             </a> -->
                         </td>
