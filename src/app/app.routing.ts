@@ -10,6 +10,7 @@ const APP_ROUTES: Routes = [
     { path: '', component: HomeComponent },
     { path: 'emendas', component: EmendaComponent },
     { path: 'emendas/:id/detalhe', component: EmendaDetalheComponent },
+    { path: 'emendas/novo', component: EmendaAdicionarEditarComponent },
     { path: 'emendas/:id', component: EmendaAdicionarEditarComponent }
 ];
 
