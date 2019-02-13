@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
@@ -15,12 +15,24 @@ export class EmendaService {
         return this.http.get<Emenda[]>(`${EP_API}/emendas`)
     }
 
-    getEmendasById(id: number): Observable<Emenda> {
-        return this.http.get<Emenda>(`${EP_API}/emendas/${id}`)
+    postEmenda(emenda: Emenda): Observable<Emenda> {
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        };
+        
+        return this.http.post<Emenda>(`${EP_API}/emendas`, JSON.stringify(emenda), httpOptions)
+      }
+
+    getEmendasById(cod_emenda: number): Observable<Emenda> {
+        return this.http.get<Emenda>(`${EP_API}/emendas/${cod_emenda}`)
     }
 
     getLegislacoes(): Observable<any[]> {
         return this.http.get<any[]>(`${EP_API}/legislacoes`)
+    }
+
+    getLegislacaoById(ano: number): Observable<Emenda> {
+        return this.http.get<Emenda>(`${EP_API}/legislacoes/${ano}`)
     }
 
     getUfs(): Observable<any[]> {
@@ -49,6 +61,26 @@ export class EmendaService {
 
     getModalidades(): Observable<any[]> {
         return this.http.get<any[]>(`${EP_API}/modalidades`);
+    }
+
+    getProgramas(): Observable<any[]> {
+        return this.http.get<any[]>(`${EP_API}/programasGoverno`);
+    }
+
+    getAcoes(): Observable<any[]> {
+        return this.http.get<any[]>(`${EP_API}/acoesOrcamentaria`);
+    }
+
+    getProjetos(): Observable<any[]> {
+        return this.http.get<any[]>(`${EP_API}/projetos`);
+    }
+
+    getStatus(): Observable<any[]> {
+        return this.http.get<any[]>(`${EP_API}/status`);
+    }
+
+    getInstrumentos(): Observable<any[]> {
+        return this.http.get<any[]>(`${EP_API}/instrumentos`);
     }
     
 }

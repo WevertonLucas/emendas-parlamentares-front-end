@@ -1,0 +1,4 @@
+<div *ngFor="let option of options" class="custom-control custom-radio">
+  <input (click)="setValue(option.value)" type="radio" id="{{option.value}}" name="customRadio" class="custom-control-input">
+  <label class="custom-control-label" for="{{option.value}}">{{option.label}}</label>
+</div>
