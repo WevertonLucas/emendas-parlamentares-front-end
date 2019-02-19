@@ -1,7 +1,11 @@
+label {
+    font-size: 13px;
+}
+
 #select-box-projeto {
-    height: 150px;
+    height: 130px;
 }
 
 #row-fonte-gnd {
-    margin-top: -102px;
+    margin-top: -93px;
 }

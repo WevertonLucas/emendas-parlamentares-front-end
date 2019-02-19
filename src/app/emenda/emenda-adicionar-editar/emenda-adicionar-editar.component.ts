@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 import { EmendaService } from '../emenda.service';
 
 import { RadioOption } from './../../shared/radio/radio-option.model';
+import Swal from 'sweetalert2';
+import { Emenda } from '../emenda.model';
 
 @Component({
   selector: 'app-emenda-adicionar-editar',
@@ -27,7 +29,43 @@ export class EmendaAdicionarEditarComponent implements OnInit {
   status: any[];
   instrumentos: any[];
   valorGlobal: Number = 0;
+  editProjeto: boolean = false;
   params: any;
+
+  emendaForm: Emenda = {
+    cod_emenda: null,
+    num_emenda: '',
+    ano: null,
+    uf: '',
+    cod_ibge: null,
+    valor_emenda: '',
+    cod_autor: null,
+    cod_fonte: null,
+    cod_gnd: null,
+    localizador: '',
+    cod_modalidade: null,
+    projeto: '',
+    cod_projeto: [],
+    cod_programa_governo: null,
+    cod_acao_orcamentaria: '',
+    cnpj_beneficiario: null,
+    beneficiario: '',
+    cod_status: null,
+    cod_instrumento: null,
+    objeto: '',
+    proposta_siconv: '',
+    convenio_siconv: '',
+    lim_empenho: '',
+    empenhado: '',
+    nota_empenho: '',
+    valor_repasse: '',
+    valor_contrapartida: '',
+    dt_ini_conv: null,
+    dt_fim_conv: null,
+    impedimento: '',
+    obs: '',
+    pendencia: ''
+  }
 
   currencyOptions = {
     prefix: 'R$ ',
@@ -40,11 +78,11 @@ export class EmendaAdicionarEditarComponent implements OnInit {
 
   impedimentoOptions: RadioOption[] = [{label: 'Sim', value:'1'}, {label: 'Não', value:'0'}]
 
-  constructor(private emendaService: EmendaService, private route: ActivatedRoute) { }
+  constructor(private emendaService: EmendaService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(res => this.params = res);
-    console.log(this.params);
+    
     this.getLegislacoes();
     this.getUfs();
     this.getAutores();
@@ -56,6 +94,36 @@ export class EmendaAdicionarEditarComponent implements OnInit {
     this.getProjetos();
     this.getStatus();
     this.getInstrumentos();
+
+    if(this.params.id){
+      this.emendaService.getEmendasById(this.params.id)
+        .subscribe(dadosEmenda => {
+          this.emendaForm = dadosEmenda;
+          
+          this.getLegislacaoById(this.emendaForm.ano);
+          if(this.emendaForm.uf){
+            this.getMunicipiosByUf(this.emendaForm.uf);
+          }
+          if(this.emendaForm.cod_autor){
+            this.getAutorById(this.emendaForm.cod_autor);
+          }
+          if(this.emendaForm.dt_fim_conv){
+            this.emendaForm.dt_fim_conv = this.emendaForm.dt_fim_conv.slice(0, 10);
+          }
+          if(this.emendaForm.dt_ini_conv){
+            this.emendaForm.dt_ini_conv = this.emendaForm.dt_ini_conv.slice(0, 10);
+          }
+          if(this.emendaForm.impedimento === 'Sim'){
+            this.emendaForm.impedimento = "1";
+          }
+          if(this.emendaForm.impedimento === 'Não'){
+            this.emendaForm.impedimento = "0";
+          }
+
+          console.log(this.emendaForm)
+        })
+    }
+
   }
 
   getLegislacoes() {
@@ -148,8 +216,30 @@ export class EmendaAdicionarEditarComponent implements OnInit {
     this.valorGlobal = Number(valor_repasse) + Number(valor_contrapartida);
   }
 
-  salvarEmenda(emenda: any){
-    this.emendaService.postEmenda(emenda)
-      .subscribe(response => console.log(response))
+  editarProjeto(){
+    this.editProjeto = !this.editProjeto;
+  }
+
+  salvarEmenda(emenda: Emenda){
+    emenda.projeto = this.emendaForm.cod_projeto;
+
+    console.log(emenda);
+
+    if(this.params.id){
+      this.emendaService.putEmenda(emenda, this.params.id)
+        .subscribe(res => {
+          Swal.fire('Atualizado', 'Emenda atualizada com sucesso.', 'success'),
+          this.router.navigate(['emendas']);
+        },
+        erro => Swal.fire('Erro', `${erro.error}`, 'error'))
+    
+      } else {
+      this.emendaService.postEmenda(emenda)
+        .subscribe(res => {
+          Swal.fire('Cadastrado', 'Emenda cadastrada com sucesso.', 'success')
+          this.router.navigate(['emendas']);
+        },
+        erro => Swal.fire('Erro', `${erro.error}`, 'error'))
+    }
   }
 }

@@ -36,7 +36,7 @@
             <div class="form-row">
               <div class="form-group col-md-3">
                 <label class="negrito">Valor</label>
-                <p>{{emenda?.valor_emenda | currency: 'BRL': true}}</p>
+                <p>{{emenda?.valor_emenda | currency: 'BRL': 'symbol'}}</p>
               </div>
               <div class="form-group col-md-5">
                 <label class="negrito">Autor</label>
@@ -92,7 +92,7 @@
             <div class="form-row">
               <div class="form-group col-md-3">
                 <label class="negrito">CNPJ do Beneficiário</label>
-                <p>{{emenda?.cnpj_beneficiario}}</p>
+                <p>{{emenda?.cnpj_beneficiario | mask: '00.000.000/0000-00'}}</p>
               </div>
               <div class="form-group col-md-5">
                 <label class="negrito">Beneficiário</label>
@@ -143,11 +143,11 @@
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label class="negrito">Limite de Empenho</label>
-                <p>{{emenda?.lim_empenho}}</p>
+                <p>{{emenda?.lim_empenho | currency: 'BRL': 'symbol'}}</p>
               </div>
               <div class="form-group col-md-4">
                 <label class="negrito">Valor empenho</label>
-                <p>{{emenda?.empenhado | currency: 'BRL': true}}</p>
+                <p>{{emenda?.empenhado | currency: 'BRL': 'symbol'}}</p>
               </div>
               <div class="form-group col-md-4">
                 <label class="negrito">Nota de Empenho</label>
@@ -159,15 +159,15 @@
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label class="negrito">Valor de repasse</label>
-                <p>{{emenda?.valor_repasse | currency: 'BRL': true}}</p>
+                <p>{{emenda?.valor_repasse | currency: 'BRL': 'symbol'}}</p>
               </div>
               <div class="form-group col-md-4">
                 <label class="negrito">Valor de Contrapartida</label>
-                <p>{{emenda?.valor_contrapartida | currency: 'BRL': true}}</p>
+                <p>{{emenda?.valor_contrapartida | currency: 'BRL': 'symbol'}}</p>
               </div>
               <div class="form-group col-md-4">
                 <label class="negrito">Valor Global</label>
-                <p>{{(emenda?.valor_repasse) + (emenda?.valor_contrapartida) | currency: 'BRL': true}}</p>
+                <p>{{(emenda?.valor_repasse) + (emenda?.valor_contrapartida) | currency: 'BRL': 'symbol'}}</p>
               </div>
             </div>
 

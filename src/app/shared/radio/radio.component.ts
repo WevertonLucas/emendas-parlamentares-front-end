@@ -19,6 +19,8 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
 
   @Input() options: RadioOption[]
 
+  @Input() valorImpedimento: any
+
   value: any
   onChange: any
 

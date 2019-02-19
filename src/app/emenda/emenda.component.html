@@ -28,7 +28,7 @@
                         <td>{{emenda.partido}}</td>
                         <td>{{emenda.cargo}}</td>
                         <td>{{emenda.beneficiario}}</td>
-                        <td>{{emenda.valor_emenda | currency: 'BRL': true}}</td>
+                        <td>{{emenda.valor_emenda | currency: 'BRL': 'symbol'}}</td>
                         <td>{{emenda.status}}</td>
                         <td class="center">
                             <a [routerLink]="['/emendas', emenda.cod_emenda, 'detalhe']">
