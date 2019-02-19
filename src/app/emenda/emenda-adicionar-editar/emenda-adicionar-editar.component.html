@@ -5,17 +5,16 @@
 
       <form #formEmenda="ngForm" novalidate>
         <!-- Fomulário de Emenda Parlamentar -->
-        <h5 class="p-3 mb-2 bg-azul-padrao text-white">Emenda Parlamentar</h5>
-        <br>
+        <h6 class="p-3 mb-2 bg-azul-padrao text-white">Emenda Parlamentar</h6>
         <!-- Row 1 -->
         <div class="form-row">
           <div class="col-4 mb-3">
             <label>Número da Emenda</label>
             <div class="input-group">
-              <input type="text" class="form-control"
+              <input type="text" class="form-control form-control-sm"
                 [class.is-valid]="iptNumEmenda.valid && (iptNumEmenda.dirty || iptNumEmenda.touched)"
                 [class.is-invalid]="!iptNumEmenda.valid && (iptNumEmenda.dirty || iptNumEmenda.touched)"
-                #iptNumEmenda="ngModel" name="num_emenda" ngModel placeholder="Número da Emenda" mask="000000000000" required minlength="12" maxlength="12" pattern="^[0-9]*$">
+                #iptNumEmenda="ngModel" name="num_emenda" [ngModel]="emendaForm.num_emenda" placeholder="Número da Emenda" mask="000000000000" required minlength="12" maxlength="12" pattern="^[0-9]*$">
               <div class="invalid-feedback">
                 Campo Obrigatório e com 12 caracteres numéricos.
               </div>
@@ -24,10 +23,10 @@
 
           <div class="col-2 mb-3">
             <label>Ano</label>
-            <select class="custom-select"
+            <select class="form-control form-control-sm"
               [class.is-valid]="iptAno.valid && (iptAno.dirty || iptAno.touched)"
               [class.is-invalid]="!iptAno.valid && (iptAno.dirty || iptAno.touched)"
-              #iptAno="ngModel" name="ano" ngModel (change)="getLegislacaoById(formEmenda.value.ano)" required>
+              #iptAno="ngModel" name="ano" [ngModel]="emendaForm.ano" (change)="getLegislacaoById(formEmenda.value.ano)" required>
               <option *ngFor="let legislacao of legislacoes" value="{{legislacao.ano}}">{{legislacao.ano}}</option>
             </select>
             <div class="invalid-feedback">
@@ -37,14 +36,14 @@
 
           <div class="col-2 mb-3">
             <label>UF</label>
-            <select class="custom-select" name="uf" ngModel (change)="getMunicipiosByUf(formEmenda.value.uf)">
+            <select class="form-control form-control-sm" name="uf" [ngModel]="emendaForm.uf" (change)="getMunicipiosByUf(formEmenda.value.uf)">
               <option *ngFor="let uf of ufs" value="{{uf.uf}}">{{uf.uf}}</option>
             </select>
           </div>
 
           <div class="col-4 mb-3">
             <label>Município</label>
-            <select class="custom-select" name="cod_ibge" ngModel>
+            <select class="form-control form-control-sm" name="cod_ibge" [ngModel]="emendaForm.cod_ibge">
               <option *ngFor="let municipio of municipios" value="{{municipio.cod_ibge}}">{{municipio.nome_municipio}}</option>
             </select>
           </div>
@@ -54,10 +53,10 @@
         <div class="form-row">
           <div class="col-2 mb-3">
             <label>Valor da Emenda</label>
-            <input type="text" class="form-control"
+            <input type="text" class="form-control form-control-sm"
               [class.is-valid]="iptValorEmenda.valid && (iptValorEmenda.dirty || iptValorEmenda.touched)"
               [class.is-invalid]="!iptValorEmenda.valid && (iptValorEmenda.dirty || iptValorEmenda.touched)"
-              #iptValorEmenda="ngModel" name="valor_emenda" ngModel placeholder="Valor da Emenda" currencyMask [options]="currencyOptions" required maxlength="19">
+              #iptValorEmenda="ngModel" name="valor_emenda" [ngModel]="emendaForm.valor_emenda" currencyMask [options]="currencyOptions" required maxlength="19">
             <div class="invalid-feedback">
               Campo Obrigatório.
             </div>
@@ -65,10 +64,10 @@
           
           <div class="col-4 mb-3">
             <label>Autor</label>
-            <select class="custom-select"
+            <select class="form-control form-control-sm"
               [class.is-valid]="iptAutor.valid && (iptAutor.dirty || iptAutor.touched)"
               [class.is-invalid]="!iptAutor.valid && (iptAutor.dirty || iptAutor.touched)"
-              #iptAutor="ngModel" name="cod_autor" ngModel (change)="getAutorById(formEmenda.value.cod_autor)" required>
+              #iptAutor="ngModel" name="cod_autor" [ngModel]="emendaForm.cod_autor" (change)="getAutorById(formEmenda.value.cod_autor)" required>
               <option *ngFor="let autor of autores" value="{{autor.cod_autor}}">{{autor.autor}}</option>
             </select>
             <div class="invalid-feedback">
@@ -78,12 +77,12 @@
 
           <div class="col-3 mb-3">
             <label>Cargo</label>
-            <input type="text" class="form-control" value="{{autor?.cargo}}" placeholder="Cargo" disabled>
+            <input type="text" class="form-control form-control-sm" value="{{autor?.cargo}}" placeholder="Cargo" disabled>
           </div>
 
           <div class="col-3 mb-3">
             <label>Partido</label>
-            <input type="text" class="form-control" value="{{autor?.partido}}" placeholder="Partido" disabled>
+            <input type="text" class="form-control form-control-sm" value="{{autor?.partido}}" placeholder="Partido" disabled>
           </div>
         </div>
 
@@ -91,10 +90,10 @@
         <div class="form-row">
           <div class="col-6 mb-3">
             <label>Fonte</label>
-            <select class="custom-select"
+            <select class="form-control form-control-sm"
               [class.is-valid]="iptFonte.valid && (iptFonte.dirty || iptFonte.touched)"
               [class.is-invalid]="!iptFonte.valid && (iptFonte.dirty || iptFonte.touched)"
-              #iptFonte="ngModel" name="cod_fonte" ngModel required>
+              #iptFonte="ngModel" name="cod_fonte" [ngModel]="emendaForm.cod_fonte" required>
               <option *ngFor="let fonte of fontes" value="{{fonte.cod_fonte}}">{{fonte.descricao}}</option>
             </select>
             <div class="invalid-feedback">
@@ -104,10 +103,10 @@
 
           <div class="col-3 mb-3">
             <label>GND</label>
-            <select class="custom-select"
+            <select class="form-control form-control-sm"
               [class.is-valid]="iptGnd.valid && (iptGnd.dirty || iptGnd.touched)"
               [class.is-invalid]="!iptGnd.valid && (iptGnd.dirty || iptGnd.touched)"
-              #iptGnd="ngModel" name="cod_gnd" ngModel required>
+              #iptGnd="ngModel" name="cod_gnd" [ngModel]="emendaForm.cod_gnd" required>
               <option *ngFor="let gnd of gnds" value="{{gnd.cod_gnd}}">{{gnd.descricao}}</option>
             </select>
             <div class="invalid-feedback">
@@ -117,17 +116,17 @@
 
           <div class="col-3 mb-3">
             <label>Localizador</label>
-            <input type="text" class="form-control" name="localizador" ngModel placeholder="Localizador" maxlength="150">
+            <input type="text" class="form-control form-control-sm" name="localizador" [ngModel]="emendaForm.localizador" placeholder="Localizador" maxlength="150">
           </div>
         </div>
 
         <div class="form-row">
           <div class="col-6 mb-3">
             <label>Modalidade</label>
-            <select class="custom-select"
+            <select class="form-control form-control-sm"
               [class.is-valid]="iptModalidade.valid && (iptModalidade.dirty || iptModalidade.touched)"
               [class.is-invalid]="!iptModalidade.valid && (iptModalidade.dirty || iptModalidade.touched)"
-              #iptModalidade="ngModel" name="cod_modalidade" ngModel required>
+              #iptModalidade="ngModel" name="cod_modalidade" [ngModel]="emendaForm.cod_modalidade" required>
               <option *ngFor="let modalidade of modalidades" value="{{modalidade.cod_modalidade}}">{{modalidade.descricao}}</option>
             </select>
             <div class="invalid-feedback">
@@ -136,9 +135,9 @@
           </div>
 
           <div class="col-6 mb-3">
-            <label>Projeto <small>(Segure Ctrl para selecionar mais de um Projeto)</small></label>
+            <label>Projeto (Ctrl para selecionar mais de um Projeto ou desmarca-los) <a class="btn btn-sm btn-azul-padrao text-white" (click)="editarProjeto()">Click para editar</a> </label>
               <div class="form-group">
-                <select multiple class="form-control" id="select-box-projeto" name="projeto" ngModel>
+                <select multiple class="form-control form-control-sm" id="select-box-projeto" name="projeto" [(ngModel)]="emendaForm.cod_projeto" [disabled]="!editProjeto">
                   <option *ngFor="let projeto of projetos" value="{{projeto.cod_projeto}}">{{projeto.descricao}}</option>
                 </select>
               </div>
@@ -149,10 +148,10 @@
         <div class="form-row" id="row-fonte-gnd">
           <div class="col-3 mb-3">
             <label>Programa</label>
-            <select class="custom-select"
+            <select class="form-control form-control-sm"
               [class.is-valid]="iptPrograma.valid && (iptPrograma.dirty || iptPrograma.touched)"
               [class.is-invalid]="!iptPrograma.valid && (iptPrograma.dirty || iptPrograma.touched)"
-              #iptPrograma="ngModel" name="cod_programa_governo" ngModel required>
+              #iptPrograma="ngModel" name="cod_programa_governo" [ngModel]="emendaForm.cod_programa_governo" required>
               <option *ngFor="let programa of programas" value="{{programa.cod_programa_governo}}">{{programa.descricao}}</option>
             </select>
             <div class="invalid-feedback">
@@ -162,10 +161,10 @@
 
           <div class="col-3 mb-3">
             <label>Ação</label>
-            <select class="custom-select"
+            <select class="form-control form-control-sm"
               [class.is-valid]="iptAcao.valid && (iptAcao.dirty || iptAcao.touched)"
               [class.is-invalid]="!iptAcao.valid && (iptAcao.dirty || iptAcao.touched)"
-              #iptAcao="ngModel" name="cod_acao_orcamentaria" ngModel required>
+              #iptAcao="ngModel" name="cod_acao_orcamentaria" [ngModel]="emendaForm.cod_acao_orcamentaria" required>
               <option *ngFor="let acao of acoes" value="{{acao.cod_acao_orcamentaria}}">{{acao.descricao}}</option>
             </select>
             <div class="invalid-feedback">
@@ -178,17 +177,17 @@
         <div class="form-row">
           <div class="col-3 mb-3">
             <label>CNPJ do Beneficiário</label>
-            <input type="text" class="form-control" name="cnpj_beneficiario" ngModel placeholder="CNPJ do Beneficiário" mask="00.000.000/0000-00">
+            <input type="text" class="form-control form-control-sm" name="cnpj_beneficiario" [ngModel]="emendaForm.cnpj_beneficiario" placeholder="CNPJ do Beneficiário" mask="00.000.000/0000-00">
           </div>
 
           <div class="col-6 mb-3">
             <label>Beneficiário</label>
-            <input type="text" class="form-control" name="beneficiario" ngModel placeholder="Beneficiário" maxlength="150">
+            <input type="text" class="form-control form-control-sm" name="beneficiario" [ngModel]="emendaForm.beneficiario" placeholder="Beneficiário" maxlength="150">
           </div>
 
           <div class="col-3 mb-3">
             <label>Status</label>
-            <select class="custom-select" name="cod_status" ngModel>
+            <select class="form-control form-control-sm" name="cod_status" [ngModel]="emendaForm.cod_status">
               <option *ngFor="let status of status" value="{{status.cod_status}}">{{status.descricao}}</option>
             </select>
           </div>
@@ -196,20 +195,19 @@
 
         <!-- Fomulário de Execuçãor -->
         <br>
-        <h5 class="p-3 mb-2 bg-azul-padrao text-white">Execução</h5>
-        <br>
+        <h6 class="p-3 mb-2 bg-azul-padrao text-white">Execução</h6>
         <!-- Row 1 -->
         <div class="form-row">
           <div class="col-4 mb-3">
             <label>Instrumento</label>
-            <select class="custom-select" name="cod_instrumento" ngModel>
+            <select class="form-control form-control-sm" name="cod_instrumento" [ngModel]="emendaForm.cod_instrumento">
               <option *ngFor="let instrumento of instrumentos" value="{{instrumento.cod_instrumento}}">{{instrumento.descricao}}</option>
             </select>
           </div>
 
           <div class="col-8 mb-3">
             <label>Objeto</label>
-            <input type="text" class="form-control" name="objeto" ngModel placeholder="Objeto" maxlength="200">
+            <input type="text" class="form-control form-control-sm" name="objeto" [ngModel]="emendaForm.objeto" placeholder="Objeto" maxlength="200">
           </div>
         </div>
 
@@ -217,12 +215,12 @@
         <div class="form-row">
           <div class="col-4 mb-3">
             <label>Proposta/Siconv</label>
-            <input type="text" class="form-control" name="proposta_siconv" ngModel placeholder="Proposta/Siconv" maxlength="11">
+            <input type="text" class="form-control form-control-sm" name="proposta_siconv" [ngModel]="emendaForm.proposta_siconv" placeholder="Proposta/Siconv" maxlength="11">
           </div>
 
           <div class="col-4 mb-3">
             <label>Número do Siconv</label>
-            <input type="text" class="form-control" name="convenio_siconv" ngModel placeholder="Número do Siconv" maxlength="11">
+            <input type="text" class="form-control form-control-sm" name="convenio_siconv" [ngModel]="emendaForm.convenio_siconv" placeholder="Número do Siconv" maxlength="11">
           </div>
         </div>
 
@@ -230,17 +228,17 @@
         <div class="form-row">
           <div class="col-4 mb-3">
             <label>Limite de Empenho</label>
-            <input type="text" class="form-control" name="lim_empenho" ngModel placeholder="Limite de Empenho" currencyMask [options]="currencyOptions" maxlength="19">
+            <input type="text" class="form-control form-control-sm" name="lim_empenho" [ngModel]="emendaForm.lim_empenho" currencyMask [options]="currencyOptions" maxlength="19">
           </div>
 
           <div class="col-4 mb-3">
             <label>Valor Empenhado</label>
-            <input type="text" class="form-control" name="empenhado" ngModel placeholder="Valor Empenhado" currencyMask [options]="currencyOptions" maxlength="19">
+            <input type="text" class="form-control form-control-sm" name="empenhado" [ngModel]="emendaForm.empenhado" currencyMask [options]="currencyOptions" maxlength="19">
           </div>
 
           <div class="col-4 mb-3">
             <label>Nota de Empenho</label>
-            <input type="text" class="form-control" name="nota_empenho" ngModel placeholder="Nota de Empenho" maxlength="45">
+            <input type="text" class="form-control form-control-sm" name="nota_empenho" [ngModel]="emendaForm.nota_empenho" placeholder="Nota de Empenho" maxlength="45">
           </div>
         </div>
 
@@ -248,17 +246,17 @@
         <div class="form-row">
           <div class="col-4 mb-3">
             <label>Valor de Repasse</label>
-            <input type="text" class="form-control" name="valor_repasse" ngModel (change)="getValorGlobal(formEmenda.value.valor_repasse, formEmenda.value.valor_contrapartida)" placeholder="Valor de Repasse" currencyMask [options]="currencyOptions" maxlength="19">
+            <input type="text" class="form-control form-control-sm" name="valor_repasse" [ngModel]="emendaForm.valor_repasse" (change)="getValorGlobal(formEmenda.value.valor_repasse, formEmenda.value.valor_contrapartida)" currencyMask [options]="currencyOptions" maxlength="19">
           </div>
 
           <div class="col-4 mb-3">
             <label>Valor de Contrapartida</label>
-            <input type="text" class="form-control" name="valor_contrapartida" ngModel (change)="getValorGlobal(formEmenda.value.valor_repasse, formEmenda.value.valor_contrapartida)" placeholder="Valor de Contrapartida" currencyMask [options]="currencyOptions" maxlength="19">
+            <input type="text" class="form-control form-control-sm" name="valor_contrapartida" [ngModel]="emendaForm.valor_contrapartida" (change)="getValorGlobal(formEmenda.value.valor_repasse, formEmenda.value.valor_contrapartida)" currencyMask [options]="currencyOptions" maxlength="19">
           </div>
 
           <div class="col-4 mb-3">
             <label>Valor Global</label>
-            <input type="text" class="form-control" value="{{valorGlobal | currency: 'BRL': true}}" placeholder="Valor Global" disabled>
+            <input type="text" class="form-control form-control-sm" value="{{valorGlobal | currency: 'BRL': 'symbol'}}" disabled>
           </div>
         </div>
 
@@ -266,18 +264,18 @@
         <div class="form-row">
           <div class="col-4 mb-3">
             <label>Data do Início do Convênio</label>
-            <input type="date" name="dt_ini_conv" ngModel class="form-control">
+            <input type="date" name="dt_ini_conv" [ngModel]="emendaForm.dt_ini_conv" class="form-control form-control-sm">
           </div>
 
           <div class="col-4 mb-3">
             <label>Data do Fim do Convênio</label>
-            <input type="date" name="dt_fim_conv" ngModel class="form-control">
+            <input type="date" name="dt_fim_conv" [ngModel]="emendaForm.dt_fim_conv" class="form-control form-control-sm">
           </div>
 
           <div class="col-3 mb-3 offset-sm-1">
             <label>Impedimento</label>
             <div class="row">
-              <app-radio [options]="impedimentoOptions" name="impedimento" ngModel></app-radio>
+              <app-radio [options]="impedimentoOptions" name="impedimento" [valorImpedimento]="emendaForm.impedimento" [ngModel]="emendaForm.impedimento"></app-radio>
             </div>
           </div>
         </div>
@@ -286,7 +284,7 @@
         <div class="form-row">
           <div class="col-12 mb-3">
             <label>Observação</label>
-            <textarea type="text" class="form-control" name="obs" ngModel placeholder="Observação" rows="3" maxlength="5000"></textarea>
+            <textarea type="text" class="form-control form-control-sm" name="obs" [ngModel]="emendaForm.obs" placeholder="Observação" rows="3" maxlength="5000"></textarea>
           </div>
         </div>
 
@@ -294,19 +292,18 @@
         <div class="form-row">
           <div class="col-12 mb-3">
             <label>Pendência</label>
-            <textarea type="text" class="form-control" name="pendencia" ngModel placeholder="Pendência" rows="3" maxlength="5000"></textarea>
+            <textarea type="text" class="form-control form-control-sm" name="pendencia" [ngModel]="emendaForm.pendencia" placeholder="Pendência" rows="3" maxlength="5000"></textarea>
           </div>
         </div>
 
          <!-- Fomulário de Alarmes e Adicionais -->
         <br>
-        <h5 class="p-3 mb-2 bg-azul-padrao text-white">Alarmes e Adicionais</h5>
-        <br>
+        <h6 class="p-3 mb-2 bg-azul-padrao text-white">Alarmes e Adicionais</h6>
         <!-- Row 1 -->
         <div class="form-row">
           <div class="col-12 mb-3">
             <label>Legislação</label>
-            <textarea type="text" class="form-control" placeholder="Legislação" rows="3" value="{{legislacao?.legislacao}}" disabled></textarea>
+            <textarea type="text" class="form-control form-control-sm" placeholder="Legislação" rows="3" value="{{legislacao?.legislacao}}" disabled></textarea>
           </div>
         </div>
 
@@ -314,7 +311,7 @@
         <div class="form-row">
             <div class="col-12 mb-3">
               <label>Descrição</label>
-              <textarea type="text" class="form-control" placeholder="Descrição" rows="3" value="{{legislacao?.descricao}}" disabled></textarea>
+              <textarea type="text" class="form-control form-control-sm" placeholder="Descrição" rows="3" value="{{legislacao?.descricao}}" disabled></textarea>
             </div>
         </div>
 
@@ -322,22 +319,22 @@
         <div class="form-row">
           <div class="col-3 mb-3">
             <label>Indicação de Beneficiário</label>
-            <input type="date" class="form-control" value="{{legislacao?.dt_indicacao_beneficiario}}" disabled>
+            <input type="date" class="form-control form-control-sm" value="{{legislacao?.dt_indicacao_beneficiario}}" disabled>
           </div>
 
           <div class="col-3 mb-3">
             <label>Apresentação de Propósta</label>
-            <input type="date" class="form-control" value="{{legislacao?.dt_apresentacao_proposta}}" disabled>
+            <input type="date" class="form-control form-control-sm" value="{{legislacao?.dt_apresentacao_proposta}}" disabled>
           </div>
 
           <div class="col-3 mb-3">
             <label>Análise de Propósta</label>
-            <input type="date" class="form-control" value="{{legislacao?.dt_indicacao_proposta}}" disabled>
+            <input type="date" class="form-control form-control-sm" value="{{legislacao?.dt_indicacao_proposta}}" disabled>
           </div>
 
           <div class="col-3 mb-3">
               <label>Celebração do Convênio</label>
-              <input type="date" class="form-control" value="{{legislacao?.dt_limite_celebracao}}" disabled>
+              <input type="date" class="form-control form-control-sm" value="{{legislacao?.dt_limite_celebracao}}" disabled>
             </div>
         </div>
 

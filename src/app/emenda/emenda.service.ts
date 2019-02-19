@@ -21,7 +21,15 @@ export class EmendaService {
         };
         
         return this.http.post<Emenda>(`${EP_API}/emendas`, JSON.stringify(emenda), httpOptions)
-      }
+    }
+
+    putEmenda(emenda: Emenda, cod_emenda: number): Observable<any> {
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        };
+        
+        return this.http.put<any>(`${EP_API}/emendas/${cod_emenda}`, JSON.stringify(emenda), httpOptions)
+    }
 
     getEmendasById(cod_emenda: number): Observable<Emenda> {
         return this.http.get<Emenda>(`${EP_API}/emendas/${cod_emenda}`)

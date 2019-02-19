@@ -1,11 +1,36 @@
 export interface Emenda {
 
-    emenda: number
-    autor: string
-    cargo: string
-    localizador: string
-    gnd: string
-    modalidade: string
-    valor: number
+    cod_emenda: number,
+    ano: number,
+    uf: string,
+    cod_ibge: number,
+    cod_autor: number,
+    cod_fonte: number,
+    cod_gnd: number,
+    cod_modalidade: number,
+    cod_programa_governo: number,
+    cod_acao_orcamentaria: string,
+    cod_status: number,
+    cod_instrumento: number,
+    num_emenda: string,
+    valor_emenda: any,
+    localizador: string,
+    cnpj_beneficiario: number,
+    beneficiario: string,
+    objeto: string,
+    proposta_siconv: string,
+    convenio_siconv: string,
+    lim_empenho: any,
+    empenhado: any,
+    nota_empenho: string,
+    valor_repasse: any,
+    valor_contrapartida: any,
+    dt_ini_conv: string,
+    dt_fim_conv: string,
+    impedimento: any,
+    obs: string,
+    pendencia: string,
+    projeto: any,
+    cod_projeto: any
 
 }
