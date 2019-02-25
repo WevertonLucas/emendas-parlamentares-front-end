@@ -15,3 +15,32 @@ body {
     border-color: #01579b;
 }
 
+p {
+    font-size: 13px;
+    margin-top: -10px;
+    margin-bottom: 0;
+}
+
+.negrito {
+    font-weight: bold;
+}
+
+.text-header {
+    font-size: 15px;
+}
+
+.text-table {
+    font-size: 13px;
+}
+
+.center {
+    text-align: center;
+}
+
+.col-ano {
+    width: 2%;
+}
+
+.col-acao {
+    width: 5%;
+}

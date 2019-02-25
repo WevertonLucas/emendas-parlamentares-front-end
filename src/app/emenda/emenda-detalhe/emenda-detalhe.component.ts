@@ -1,7 +1,8 @@
-import { EmendaService } from './../emenda.service';
 import { Component, OnInit } from '@angular/core';
-import { Emenda } from '../emenda.model';
 import { ActivatedRoute } from '@angular/router';
+
+import { Emenda } from '../emenda.model';
+import { EmendaService } from './../emenda.service';
 
 @Component({
   selector: 'app-emenda-detalhe',

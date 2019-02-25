@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <br>
+  <div class="card">
+      <div class="card-body">
+          <div>
+              <a [routerLink]="['/emendas/novo']" class="btn btn-azul-padrao text-white disabled">Adicionar</a>
+          </div>
+
+          <!-- col-md-4 offset-md-4 -->
+          
+          <table class="table table-striped table-bordered table-responsive table-sm">
+              <thead>
+                  <tr class="center text-header">
+                      <th scope="col" class="col-ano">Ano</th>
+                      <th scope="col" class="col-legislacao">Legislação</th>
+                      <th scope="col" class="col-datas-legis">Indicação de Beneficiário</th>
+                      <th scope="col" class="col-datas-legis">Apresentação de Propósito</th>
+                      <th scope="col" class="col-datas-legis">Análise de Proposta</th>
+                      <th scope="col" class="col-datas-legis">Celebração do Convênio</th>
+                      <th scope="col" class="col-acao">Ação</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let legislacao of legislacoes" class="text-table">
+                      <td>{{legislacao.ano}}</td>
+                      <td>{{legislacao.legislacao}}</td>
+                      <td>{{legislacao.dt_indicacao_beneficiario | date:"dd/MM/yyyy"}}</td>
+                      <td>{{legislacao.dt_indicacao_proposta | date:"dd/MM/yyyy"}}</td>
+                      <td>{{legislacao.dt_apresentacao_proposta | date:"dd/MM/yyyy"}}</td>
+                      <td>{{legislacao.dt_limite_celebracao | date:"dd/MM/yyyy"}}</td>
+                      <td class="center">
+                          <a [routerLink]="['/legislacao', legislacao.ano, 'detalhe']">
+                              <i class="fas fa-search"></i>
+                          </a>
+                          <a [routerLink]="['/legislacao', legislacao.ano]">
+                              <i class="fas fa-pencil-alt col-1"></i>
+                          </a>
+                          <!-- <a href="#">
+                              <i class="fas fa-trash-alt col-1"></i>
+                          </a> -->
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
