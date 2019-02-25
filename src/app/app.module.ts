@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 
@@ -16,6 +16,7 @@ import { EmendaService } from './emenda/emenda.service';
 import { HeaderComponent } from './header/header.component';
 import { EmendaAdicionarEditarComponent } from './emenda/emenda-adicionar-editar/emenda-adicionar-editar.component';
 import { RadioComponent } from './shared/radio/radio.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +26,15 @@ import { RadioComponent } from './shared/radio/radio.component';
     HomeComponent,
     HeaderComponent,
     EmendaAdicionarEditarComponent,
-    RadioComponent
+    RadioComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxMaskModule.forRoot(),
     CurrencyMaskModule,
     routing
