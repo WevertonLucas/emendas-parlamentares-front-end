@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
@@ -11,8 +11,13 @@ export class EmendaService {
 
     constructor(private http: HttpClient) { }
 
-    getEmendas(): Observable<Emenda[]> {
-        return this.http.get<Emenda[]>(`${EP_API}/emendas`)
+    getEmendas(search?: string): Observable<Emenda[]> {
+        let params: HttpParams = undefined;
+        console.log(search);
+        if(search){
+            params = new HttpParams().append('num_emenda', search);
+        }
+        return this.http.get<Emenda[]>(`${EP_API}/emendas`, {params: params})
     }
 
     postEmenda(emenda: Emenda): Observable<Emenda> {
