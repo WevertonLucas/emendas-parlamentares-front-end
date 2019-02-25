@@ -13,7 +13,7 @@ export class EmendaService {
 
     getEmendas(search?: string): Observable<Emenda[]> {
         let params: HttpParams = undefined;
-        console.log(search);
+        
         if(search){
             params = new HttpParams().append('num_emenda', search);
         }
