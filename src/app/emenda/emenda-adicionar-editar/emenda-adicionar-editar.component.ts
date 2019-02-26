@@ -135,14 +135,14 @@ export class EmendaAdicionarEditarComponent implements OnInit {
     this.emendaService.getLegislacaoById(ano)
       .subscribe(legislacao => {
         this.legislacao = legislacao;
-        if(this.legislacao.dt_apresentacao_proposta)
-          this.legislacao.dt_apresentacao_proposta = this.legislacao.dt_apresentacao_proposta.slice(0, 10);
         if(this.legislacao.dt_indicacao_beneficiario)
           this.legislacao.dt_indicacao_beneficiario = this.legislacao.dt_indicacao_beneficiario.slice(0, 10);
-        if(this.legislacao.dt_indicacao_proposta)
-          this.legislacao.dt_indicacao_proposta = this.legislacao.dt_indicacao_proposta.slice(0, 10);
-        if(this.legislacao.dt_limite_celebracao)
-          this.legislacao.dt_limite_celebracao = this.legislacao.dt_limite_celebracao.slice(0, 10);
+        if(this.legislacao.dt_cadastramento_proposta)
+          this.legislacao.dt_cadastramento_proposta = this.legislacao.dt_cadastramento_proposta.slice(0, 10);        
+        if(this.legislacao.dt_analise_proposta)
+          this.legislacao.dt_analise_proposta = this.legislacao.dt_analise_proposta.slice(0, 10);
+        if(this.legislacao.dt_celebracao_convenio)
+          this.legislacao.dt_celebracao_convenio = this.legislacao.dt_celebracao_convenio.slice(0, 10);
       })
   }
 
@@ -222,8 +222,6 @@ export class EmendaAdicionarEditarComponent implements OnInit {
 
   salvarEmenda(emenda: Emenda){
     emenda.projeto = this.emendaForm.cod_projeto;
-
-    console.log(emenda);
 
     if(this.params.id){
       this.emendaService.putEmenda(emenda, this.params.id)
