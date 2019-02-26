@@ -25,9 +25,9 @@
                       <td>{{legislacao.ano}}</td>
                       <td>{{legislacao.legislacao}}</td>
                       <td>{{legislacao.dt_indicacao_beneficiario | date:"dd/MM/yyyy"}}</td>
-                      <td>{{legislacao.dt_indicacao_proposta | date:"dd/MM/yyyy"}}</td>
-                      <td>{{legislacao.dt_apresentacao_proposta | date:"dd/MM/yyyy"}}</td>
-                      <td>{{legislacao.dt_limite_celebracao | date:"dd/MM/yyyy"}}</td>
+                      <td>{{legislacao.dt_cadastramento_proposta | date:"dd/MM/yyyy"}}</td>
+                      <td>{{legislacao.dt_analise_proposta | date:"dd/MM/yyyy"}}</td>
+                      <td>{{legislacao.dt_celebracao_convenio | date:"dd/MM/yyyy"}}</td>
                       <td class="center">
                           <a [routerLink]="['/legislacao', legislacao.ano, 'detalhe']">
                               <i class="fas fa-search"></i>
