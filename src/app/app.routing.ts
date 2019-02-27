@@ -7,6 +7,7 @@ import { EmendaDetalheComponent } from './emenda/emenda-detalhe/emenda-detalhe.c
 import { EmendaAdicionarEditarComponent } from './emenda/emenda-adicionar-editar/emenda-adicionar-editar.component';
 import { LegislacaoComponent } from './legislacao/legislacao.component';
 import { LegislacaoDetalheComponent } from './legislacao/legislacao-detalhe/legislacao-detalhe.component';
+import { LegislacaoAdicionarEditarComponent } from './legislacao/legislacao-adicionar-editar/legislacao-adicionar-editar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const APP_ROUTES: Routes = [
@@ -17,6 +18,8 @@ const APP_ROUTES: Routes = [
     { path: 'emendas/:id', component: EmendaAdicionarEditarComponent },
     { path: 'legislacao', component: LegislacaoComponent },
     { path: 'legislacao/:id/detalhe', component: LegislacaoDetalheComponent },
+    { path: 'legislacao/novo', component: LegislacaoAdicionarEditarComponent },
+    { path: 'legislacao/:id', component: LegislacaoAdicionarEditarComponent },
     { path: '**', component: NotFoundComponent }
 ];
 

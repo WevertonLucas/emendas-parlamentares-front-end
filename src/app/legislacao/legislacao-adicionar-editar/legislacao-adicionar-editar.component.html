@@ -1,0 +1,69 @@
+<div class="container">
+  <br>
+  <div class="card">
+    <div class="card-body">
+
+      <form #formLegislacao="ngForm" novalidate>
+
+        <!-- Row 1 -->
+        <div class="form-row">
+          <div class="col-4 mb-3">
+            <label>Ano</label>
+            <div class="input-group">
+              <input type="text" class="form-control form-control-sm"
+                [class.is-valid]="iptAno.valid && (iptAno.dirty || iptAno.touched)"
+                [class.is-invalid]="!iptAno.valid && (iptAno.dirty || iptAno.touched)"
+                #iptAno="ngModel" name="ano" ngModel value="{{legislacaoForm.ano}}" (change)="setDataCelebracao(formLegislacao.value.ano)"
+                placeholder="Ano" mask="0000" required minlength="4" maxlength="4" pattern="^[0-9]*$" [disabled]="legislacaoForm.ano">
+              <div class="invalid-feedback">
+                Campo Obrigatório e com 4 caracteres numéricos.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="form-row">
+          <div class="col-12 mb-3">
+            <label>Legislação</label>
+            <textarea type="text" class="form-control form-control-sm" name="legislacao" [ngModel]="legislacaoForm.legislacao" placeholder="Legislação" rows="3" maxlength="255"></textarea>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="form-row">
+            <div class="col-12 mb-3">
+              <label>Descrição</label>
+              <textarea type="text" class="form-control form-control-sm" name="descricao" [ngModel]="legislacaoForm.descricao" placeholder="Descrição" rows="3" maxlength="5000"></textarea>
+            </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="form-row">
+          <div class="col-3 mb-3">
+            <label>Indicação de Beneficiário</label>
+            <input type="date" class="form-control form-control-sm" name="dt_indicacao_beneficiario" [ngModel]="legislacaoForm.dt_indicacao_beneficiario">
+          </div>
+
+          <div class="col-3 mb-3">
+            <label>Cadastramento de Proposta</label>
+            <input type="date" class="form-control form-control-sm" name="dt_cadastramento_proposta" [ngModel]="legislacaoForm.dt_cadastramento_proposta">
+          </div>
+
+          <div class="col-3 mb-3">
+            <label>Análise de Proposta</label>
+            <input type="date" class="form-control form-control-sm" name="dt_analise_proposta" [ngModel]="legislacaoForm.dt_analise_proposta">
+          </div>
+
+          <div class="col-3 mb-3">
+              <label>Celebração do Convênio</label>
+              <input type="date" class="form-control form-control-sm" name="dt_celebracao_convenio" [ngModel]="legislacaoForm.dt_celebracao_convenio">
+            </div>
+        </div>
+
+        <input type="text" name="evitaSubmitAutomatico" style="display: none">
+        <button class="btn btn-azul-padrao text-white offset-md-11" (click)="salvarLegislacao(formLegislacao.value)" [disabled]="!formLegislacao.valid">Salvar</button>
+      </form>
+    </div>
+  </div>
+</div>

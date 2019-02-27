@@ -3,7 +3,7 @@
   <div class="card">
       <div class="card-body">
           <div>
-              <a [routerLink]="['/emendas/novo']" class="btn btn-azul-padrao text-white disabled">Adicionar</a>
+              <a [routerLink]="['/legislacao/novo']" class="btn btn-azul-padrao text-white">Adicionar</a>
           </div>
 
           <!-- col-md-4 offset-md-4 -->
@@ -14,7 +14,7 @@
                       <th scope="col" class="col-ano">Ano</th>
                       <th scope="col" class="col-legislacao">Legislação</th>
                       <th scope="col" class="col-datas-legis">Indicação de Beneficiário</th>
-                      <th scope="col" class="col-datas-legis">Apresentação de Propósito</th>
+                      <th scope="col" class="col-datas-legis">Cadastramento de Proposto</th>
                       <th scope="col" class="col-datas-legis">Análise de Proposta</th>
                       <th scope="col" class="col-datas-legis">Celebração do Convênio</th>
                       <th scope="col" class="col-acao">Ação</th>
@@ -35,9 +35,9 @@
                           <a [routerLink]="['/legislacao', legislacao.ano]">
                               <i class="fas fa-pencil-alt col-1"></i>
                           </a>
-                          <!-- <a href="#">
+                          <a [routerLink]="['/legislacao']" (click)="apagaLegislacao(legislacao.ano)" >
                               <i class="fas fa-trash-alt col-1"></i>
-                          </a> -->
+                          </a>
                       </td>
                   </tr>
               </tbody>
