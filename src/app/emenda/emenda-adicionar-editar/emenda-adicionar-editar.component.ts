@@ -119,8 +119,7 @@ export class EmendaAdicionarEditarComponent implements OnInit {
           if(this.emendaForm.impedimento === 'Não'){
             this.emendaForm.impedimento = "0";
           }
-
-          console.log(this.emendaForm)
+          
         })
     }
 

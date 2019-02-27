@@ -19,6 +19,7 @@ import { RadioComponent } from './shared/radio/radio.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LegislacaoComponent } from './legislacao/legislacao.component';
 import { LegislacaoDetalheComponent } from './legislacao/legislacao-detalhe/legislacao-detalhe.component';
+import { LegislacaoAdicionarEditarComponent } from './legislacao/legislacao-adicionar-editar/legislacao-adicionar-editar.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LegislacaoDetalheComponent } from './legislacao/legislacao-detalhe/legi
     RadioComponent,
     NotFoundComponent,
     LegislacaoComponent,
-    LegislacaoDetalheComponent
+    LegislacaoDetalheComponent,
+    LegislacaoAdicionarEditarComponent
   ],
   imports: [
     BrowserModule,

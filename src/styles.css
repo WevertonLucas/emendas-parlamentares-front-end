@@ -15,6 +15,10 @@ body {
     border-color: #01579b;
 }
 
+label {
+    font-size: 13px;
+}
+
 p {
     font-size: 13px;
     margin-top: -10px;

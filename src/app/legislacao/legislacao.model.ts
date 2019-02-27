@@ -4,8 +4,8 @@ export interface Legislacao {
     legislacao: string,
     descricao: string,
     dt_indicacao_beneficiario: any,
-    dt_indicacao_proposta: any,
-    dt_apresentacao_proposta: any,
-    dt_limite_celebracao: any
+    dt_cadastramento_proposta: any,
+    dt_analise_proposta: any,
+    dt_celebracao_convenio: any
 
 }
