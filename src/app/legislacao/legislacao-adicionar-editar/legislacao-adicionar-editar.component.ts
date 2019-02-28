@@ -17,8 +17,8 @@ export class LegislacaoAdicionarEditarComponent implements OnInit {
 
   legislacaoForm: Legislacao = {
     ano: null,
-    legislacao: '',
-    descricao: '',
+    legislacao: null,
+    descricao: null,
     dt_indicacao_beneficiario: null,
     dt_cadastramento_proposta: null,
     dt_analise_proposta: null,

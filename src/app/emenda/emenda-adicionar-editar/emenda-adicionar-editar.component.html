@@ -6,10 +6,11 @@
       <form #formEmenda="ngForm" novalidate>
         <!-- Fomulário de Emenda Parlamentar -->
         <h6 class="p-3 mb-2 bg-azul-padrao text-white">Emenda Parlamentar</h6>
+        <span class="text-table text-danger">Os campos marcados com * são obrigatórios</span>
         <!-- Row 1 -->
         <div class="form-row">
           <div class="col-4 mb-3">
-            <label>Número da Emenda</label>
+            <label>Número da Emenda</label><span class="text-danger"> *</span>
             <div class="input-group">
               <input type="text" class="form-control form-control-sm"
                 [class.is-valid]="iptNumEmenda.valid && (iptNumEmenda.dirty || iptNumEmenda.touched)"
@@ -22,7 +23,7 @@
           </div>
 
           <div class="col-2 mb-3">
-            <label>Ano</label>
+            <label>Ano</label><span class="text-danger"> *</span>
             <select class="form-control form-control-sm"
               [class.is-valid]="iptAno.valid && (iptAno.dirty || iptAno.touched)"
               [class.is-invalid]="!iptAno.valid && (iptAno.dirty || iptAno.touched)"
@@ -52,7 +53,7 @@
         <!-- Row 2 -->
         <div class="form-row">
           <div class="col-2 mb-3">
-            <label>Valor da Emenda</label>
+            <label>Valor da Emenda</label><span class="text-danger"> *</span>
             <input type="text" class="form-control form-control-sm"
               [class.is-valid]="iptValorEmenda.valid && (iptValorEmenda.dirty || iptValorEmenda.touched)"
               [class.is-invalid]="!iptValorEmenda.valid && (iptValorEmenda.dirty || iptValorEmenda.touched)"
@@ -63,7 +64,7 @@
           </div>
           
           <div class="col-4 mb-3">
-            <label>Autor</label>
+            <label>Autor</label><span class="text-danger"> *</span>
             <select class="form-control form-control-sm"
               [class.is-valid]="iptAutor.valid && (iptAutor.dirty || iptAutor.touched)"
               [class.is-invalid]="!iptAutor.valid && (iptAutor.dirty || iptAutor.touched)"
@@ -89,7 +90,7 @@
         <!-- Row 3 -->
         <div class="form-row">
           <div class="col-6 mb-3">
-            <label>Fonte</label>
+            <label>Fonte</label><span class="text-danger"> *</span>
             <select class="form-control form-control-sm"
               [class.is-valid]="iptFonte.valid && (iptFonte.dirty || iptFonte.touched)"
               [class.is-invalid]="!iptFonte.valid && (iptFonte.dirty || iptFonte.touched)"
@@ -102,7 +103,7 @@
           </div>
 
           <div class="col-3 mb-3">
-            <label>GND</label>
+            <label>GND</label><span class="text-danger"> *</span>
             <select class="form-control form-control-sm"
               [class.is-valid]="iptGnd.valid && (iptGnd.dirty || iptGnd.touched)"
               [class.is-invalid]="!iptGnd.valid && (iptGnd.dirty || iptGnd.touched)"
@@ -122,7 +123,7 @@
 
         <div class="form-row">
           <div class="col-6 mb-3">
-            <label>Modalidade</label>
+            <label>Modalidade</label><span class="text-danger"> *</span>
             <select class="form-control form-control-sm"
               [class.is-valid]="iptModalidade.valid && (iptModalidade.dirty || iptModalidade.touched)"
               [class.is-invalid]="!iptModalidade.valid && (iptModalidade.dirty || iptModalidade.touched)"
@@ -147,7 +148,7 @@
         <!-- Row 4 -->
         <div class="form-row" id="row-fonte-gnd">
           <div class="col-3 mb-3">
-            <label>Programa</label>
+            <label>Programa</label><span class="text-danger"> *</span>
             <select class="form-control form-control-sm"
               [class.is-valid]="iptPrograma.valid && (iptPrograma.dirty || iptPrograma.touched)"
               [class.is-invalid]="!iptPrograma.valid && (iptPrograma.dirty || iptPrograma.touched)"
@@ -160,7 +161,7 @@
           </div>
 
           <div class="col-3 mb-3">
-            <label>Ação</label>
+            <label>Ação</label><span class="text-danger"> *</span>
             <select class="form-control form-control-sm"
               [class.is-valid]="iptAcao.valid && (iptAcao.dirty || iptAcao.touched)"
               [class.is-invalid]="!iptAcao.valid && (iptAcao.dirty || iptAcao.touched)"
