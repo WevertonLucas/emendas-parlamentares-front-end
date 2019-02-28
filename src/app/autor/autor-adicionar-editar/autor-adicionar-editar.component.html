@@ -1,0 +1,53 @@
+<div class="container">
+    <br>
+    <div class="card">
+      <div class="card-body">
+  
+        <form #formAutor="ngForm" novalidate>
+                    
+          <div class="form-row">
+            <div class="col-4 mb-3">
+              <label>Autor</label>
+                <div class="input-group">
+                  <input type="text" class="form-control form-control-sm"
+                    [class.is-valid]="iptAutor.valid && (iptAutor.dirty || iptAutor.touched)"
+                    [class.is-invalid]="!iptAutor.valid && (iptAutor.dirty || iptAutor.touched)"
+                    #iptAutor="ngModel" name="autor" [ngModel]="autorForm.autor" placeholder="Ex: 0000 - Nome e Sobrenome" maxlength="45" required>
+                  <div class="invalid-feedback">
+                    Campo Obrigatório.
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-4 mb-3">
+              <label>Cargo</label>
+                <div class="input-group">
+                  <input type="text" class="form-control form-control-sm"
+                    [class.is-valid]="iptCargo.valid && (iptCargo.dirty || iptCargo.touched)"
+                    [class.is-invalid]="!iptCargo.valid && (iptCargo.dirty || iptCargo.touched)"
+                    #iptCargo="ngModel" name="cargo" [ngModel]="autorForm.cargo" placeholder="Digite o cargo do autor" maxlength="45" required>
+                  <div class="invalid-feedback">
+                    Campo Obrigatório.
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-4 mb-3">
+              <label>Partido</label>
+                <div class="input-group">
+                  <input type="text" class="form-control form-control-sm"
+                    [class.is-valid]="iptPartido.valid && (iptPartido.dirty || iptPartido.touched)"
+                    [class.is-invalid]="!iptPartido.valid && (iptPartido.dirty || iptPartido.touched)"
+                    #iptPartido="ngModel" name="partido" [ngModel]="autorForm.partido" placeholder="Digite o partido do autor" maxlength="10" required>
+                  <div class="invalid-feedback">
+                    Campo Obrigatório.
+                  </div>
+                </div>
+            </div>
+          </div>
+  
+          <button class="btn btn-azul-padrao text-white offset-md-11" (click)="salvarAutor(formAutor.value)" [disabled]="!formAutor.valid">Salvar</button>
+        </form>
+      </div>
+    </div>
+  </div>
