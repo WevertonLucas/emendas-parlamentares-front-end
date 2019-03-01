@@ -40,28 +40,12 @@ export class EmendaService {
         return this.http.get<Emenda>(`${EP_API}/emendas/${cod_emenda}`)
     }
 
-    getLegislacoes(): Observable<any[]> {
-        return this.http.get<any[]>(`${EP_API}/legislacoes`)
-    }
-
-    getLegislacaoById(ano: number): Observable<Emenda> {
-        return this.http.get<Emenda>(`${EP_API}/legislacoes/${ano}`)
-    }
-
     getUfs(): Observable<any[]> {
         return this.http.get<any[]>(`${EP_API}/ufs`)
     }
 
     getMunicipiosByUf(uf: string): Observable<any[]> {
         return this.http.get<any[]>(`${EP_API}/municipios/${uf}`)
-    }
-
-    getAutores(): Observable<any[]> {
-        return this.http.get<any[]>(`${EP_API}/autores`)
-    }
-
-    getAutoresById(cod_autor: number): Observable<any[]> {
-        return this.http.get<any[]>(`${EP_API}/autores/${cod_autor}`);
     }
 
     getFontes(): Observable<any[]> {

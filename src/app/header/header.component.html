@@ -1,11 +1,11 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-azul-padrao">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-azul-padrao">
     <div class="container-fluid">
       <div class="navbar-nav">
-        <a class="nav-item nav-link text-white" [routerLink]="['/']">Início</a>
-        <a class="nav-item nav-link text-white" [routerLink]="['/emendas']">Emendas Parlamentares</a>
-        <a class="nav-item nav-link text-white" [routerLink]="['/legislacao']">Legislação</a>
-        <a class="nav-item nav-link text-white" [routerLink]="['/autor']">Autor</a>
+        <a class="nav-item nav-link" [routerLink]="['/']">Início</a>
+        <a routerLinkActive="active" class="nav-item nav-link" [routerLink]="['/emendas']">Emendas Parlamentares</a>
+        <a routerLinkActive="active" class="nav-item nav-link" [routerLink]="['/legislacao']">Legislação</a>
+        <a routerLinkActive="active" class="nav-item nav-link" [routerLink]="['/autor']">Autor</a>
       </div>
     </div>
   </nav>

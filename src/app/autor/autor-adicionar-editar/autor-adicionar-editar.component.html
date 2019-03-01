@@ -4,10 +4,11 @@
       <div class="card-body">
   
         <form #formAutor="ngForm" novalidate>
-                    
+          <span class="text-table text-danger">Os campos marcados com * são obrigatórios</span>
+          <!-- Row 1 -->
           <div class="form-row">
             <div class="col-4 mb-3">
-              <label>Autor</label>
+              <label>Autor</label><span class="text-danger"> *</span>
                 <div class="input-group">
                   <input type="text" class="form-control form-control-sm"
                     [class.is-valid]="iptAutor.valid && (iptAutor.dirty || iptAutor.touched)"
@@ -19,8 +20,9 @@
                 </div>
             </div>
 
+            <!-- Row 2 -->
             <div class="col-4 mb-3">
-              <label>Cargo</label>
+              <label>Cargo</label><span class="text-danger"> *</span>
                 <div class="input-group">
                   <input type="text" class="form-control form-control-sm"
                     [class.is-valid]="iptCargo.valid && (iptCargo.dirty || iptCargo.touched)"
@@ -32,8 +34,9 @@
                 </div>
             </div>
 
+            <!-- Row 3 -->
             <div class="col-4 mb-3">
-              <label>Partido</label>
+              <label>Partido</label><span class="text-danger"> *</span>
                 <div class="input-group">
                   <input type="text" class="form-control form-control-sm"
                     [class.is-valid]="iptPartido.valid && (iptPartido.dirty || iptPartido.touched)"

@@ -4,11 +4,11 @@
     <div class="card-body">
 
       <form #formLegislacao="ngForm" novalidate>
-
+        <span class="text-table text-danger">Os campos marcados com * são obrigatórios</span>
         <!-- Row 1 -->
         <div class="form-row">
           <div class="col-4 mb-3">
-            <label>Ano</label>
+            <label>Ano</label><span class="text-danger"> *</span>
             <div class="input-group">
               <input type="text" class="form-control form-control-sm"
                 [class.is-valid]="iptAno.valid && (iptAno.dirty || iptAno.touched)"
