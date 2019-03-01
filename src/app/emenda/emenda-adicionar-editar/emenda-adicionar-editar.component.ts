@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 
 import { EmendaService } from '../emenda.service';
+import { LegislacaoService } from './../../legislacao/legislacao.service';
+import { AutorService } from './../../autor/autor.service';
 
 import { RadioOption } from './../../shared/radio/radio-option.model';
 import Swal from 'sweetalert2';
@@ -78,7 +80,10 @@ export class EmendaAdicionarEditarComponent implements OnInit {
 
   impedimentoOptions: RadioOption[] = [{label: 'Sim', value:'1'}, {label: 'Não', value:'0'}]
 
-  constructor(private emendaService: EmendaService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private emendaService: EmendaService,
+              private legislacaoService: LegislacaoService,
+              private autorService: AutorService,
+              private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(res => this.params = res);
@@ -126,12 +131,12 @@ export class EmendaAdicionarEditarComponent implements OnInit {
   }
 
   getLegislacoes() {
-    this.emendaService.getLegislacoes()
+    this.legislacaoService.getLegislacoes()
       .subscribe(legislacoes => this.legislacoes = legislacoes)
   }
 
   getLegislacaoById(ano: number) {
-    this.emendaService.getLegislacaoById(ano)
+    this.legislacaoService.getLegislacaoById(ano)
       .subscribe(legislacao => {
         this.legislacao = legislacao;
         if(this.legislacao.dt_indicacao_beneficiario)
@@ -156,12 +161,12 @@ export class EmendaAdicionarEditarComponent implements OnInit {
   }
 
   getAutores() {
-    this.emendaService.getAutores()
+    this.autorService.getAutores()
       .subscribe(autores => this.autores = autores)
   }
 
   getAutorById(cod_autor: number) {
-    this.emendaService.getAutoresById(cod_autor)
+    this.autorService.getAutoresById(cod_autor)
       .subscribe(autor => this.autor = autor)
   }
 
