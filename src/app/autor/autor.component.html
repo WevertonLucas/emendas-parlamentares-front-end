@@ -9,9 +9,15 @@
             <table class="table table-striped table-bordered table-responsive table-sm">
                 <thead>
                     <tr class="center text-header">
-                        <th scope="col" class="col-autor">Autor</th>
-                        <th scope="col" class="col-cargo">Cargo</th>
-                        <th scope="col" class="cols-partido">Partido</th>
+                        <th scope="col" class="col-autor">
+                            <input type="text" class="form-control form-control-sm" name="autor" [(ngModel)]="filtros.autor" placeholder="Autor" (ngModelChange)="filtroAutor(filtros)" autocomplete="off">
+                        </th>
+                        <th scope="col" class="col-cargo">
+                                <input type="text" class="form-control form-control-sm" name="cargo" [(ngModel)]="filtros.cargo" placeholder="Cargo" (ngModelChange)="filtroAutor(filtros)" autocomplete="off">
+                            </th>
+                        <th scope="col" class="col-partido">
+                            <input type="text" class="form-control form-control-sm" name="partido" [(ngModel)]="filtros.partido" placeholder="Partido" (ngModelChange)="filtroAutor(filtros)" autocomplete="off">
+                        </th>
                         <th scope="col" class="col-acao">Ação</th>
                     </tr>
                 </thead>
