@@ -12,7 +12,14 @@ import Swal from 'sweetalert2';
 })
 export class AutorComponent implements OnInit {
 
+  todosAutores: Autor[];
   autores: Autor[];
+
+  filtros = {
+    autor: '',
+    partido: '',
+    cargo: ''
+  }
 
   constructor(private autorService: AutorService) { }
 
@@ -22,7 +29,28 @@ export class AutorComponent implements OnInit {
 
   getAutores() {
     this.autorService.getAutores()
-      .subscribe(autores => this.autores = autores);
+      .subscribe(autores => {
+        this.todosAutores = autores;
+        this.autores = autores;
+      });
+  }
+
+  filtroAutor(filtros): any {
+    if(!filtros.autor && !filtros.partido && !filtros.cargo){      
+      this.autores = this.todosAutores;
+    } else {
+      let valida;
+      let autor = this.todosAutores.filter(autores => {
+        valida = true;
+        if(filtros.autor && !autores.autor.toString().toLowerCase().includes(filtros.autor.toLowerCase())){ valida = false; }
+        if(filtros.partido && !autores.partido.toString().toLowerCase().includes(filtros.partido.toLowerCase())){ valida = false; }
+        if(filtros.cargo && !autores.cargo.toString().toLowerCase().includes(filtros.cargo.toLowerCase())){ valida = false; }
+
+        return valida;
+      });
+
+      this.autores = autor;
+    }
   }
 
   apagaAutor(cod_autor: number) {

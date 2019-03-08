@@ -230,7 +230,7 @@ export class EmendaAdicionarEditarComponent implements OnInit {
     if(this.params.id){
       this.emendaService.putEmenda(emenda, this.params.id)
         .subscribe(res => {
-          Swal.fire('Atualizado', 'Emenda atualizada com sucesso.', 'success'),
+          Swal.fire('Atualizado', 'Emenda atualizada com sucesso.', 'success')
           this.router.navigate(['emendas']);
         },
         erro => Swal.fire('Erro', `${erro.error}`, 'error'))

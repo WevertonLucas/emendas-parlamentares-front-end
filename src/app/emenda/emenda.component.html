@@ -4,10 +4,6 @@
         <div class="card-body">
             <div class="row div-search-bar">
                 <a [routerLink]="['/emendas/novo']" class="btn btn-azul-padrao text-white">Adicionar</a>
-
-                <form [formGroup]="searchForm" class="search-bar col-md-2 offset-md-9">
-                    <input class="form-control mr-sm-2" type="search" formControlName="searchControl" placeholder="Pesquisa por Emenda" aria-label="Search">
-                </form>
             </div>
 
             <!-- col-md-4 offset-md-4 -->
@@ -15,14 +11,28 @@
             <table class="table table-striped table-bordered table-responsive table-sm">
                 <thead>
                     <tr class="center text-header">
-                        <th scope="col" class="col-ano">Ano</th>
-                        <th scope="col" class="col-emenda">Emenda</th>
-                        <th scope="col" class="col-autor">Autor</th>
-                        <th scope="col" class="col-partido">Partido</th>
-                        <th scope="col" class="col-cargo">Cargo</th>
-                        <th scope="col" class="col-beneficiario">Beneficiário</th>
+                        <th scope="col" class="col-ano">
+                            <input type="text" class="form-control form-control-sm" name="ano" [(ngModel)]="filtros.ano" placeholder="Ano" (ngModelChange)="filtroEmenda(filtros)" autocomplete="off">
+                        </th>
+                        <th scope="col" class="col-emenda">
+                            <input type="text" class="form-control form-control-sm" name="num_emenda" [(ngModel)]="filtros.num_emenda" placeholder="Emenda" (ngModelChange)="filtroEmenda(filtros)" autocomplete="off">
+                        </th>
+                        <th scope="col" class="col-autor">
+                            <input type="text" class="form-control form-control-sm" name="autor" [(ngModel)]="filtros.autor" placeholder="Autor" (ngModelChange)="filtroEmenda(filtros)" autocomplete="off">
+                        </th>
+                        <th scope="col" class="col-partido">
+                            <input type="text" class="form-control form-control-sm" name="partido" [(ngModel)]="filtros.partido" placeholder="Partido" (ngModelChange)="filtroEmenda(filtros)" autocomplete="off">
+                        </th>
+                        <th scope="col" class="col-cargo">
+                                <input type="text" class="form-control form-control-sm" name="cargo" [(ngModel)]="filtros.cargo" placeholder="Cargo" (ngModelChange)="filtroEmenda(filtros)" autocomplete="off">
+                        </th>
+                        <th scope="col" class="col-beneficiario">
+                                <input type="text" class="form-control form-control-sm" name="beneficiario" [(ngModel)]="filtros.beneficiario" placeholder="Beneficiário" (ngModelChange)="filtroEmenda(filtros)" autocomplete="off">
+                        </th>
                         <th scope="col" class="col-valor">Valor</th>
-                        <th scope="col" class="col-status">Status</th>
+                        <th scope="col" class="col-status">
+                                <input type="text" class="form-control form-control-sm" name="status" [(ngModel)]="filtros.status" placeholder="Status" (ngModelChange)="filtroEmenda(filtros)" autocomplete="off">
+                        </th>
                         <th scope="col" class="col-acao">Ação</th>
                     </tr>
                 </thead>

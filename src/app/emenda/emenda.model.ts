@@ -31,6 +31,10 @@ export interface Emenda {
     obs: string,
     pendencia: string,
     projeto: any,
-    cod_projeto: any
+    cod_projeto: any,
+    autor?: string,
+    partido?: string,
+    cargo?: string,
+    status?: string
 
 }
