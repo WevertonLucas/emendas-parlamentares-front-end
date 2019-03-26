@@ -15,6 +15,7 @@ export class EmendaComponent implements OnInit {
   todasEmendas: Emenda[];
   emendas: Emenda[];
 
+  //Objeto com os atributos utilizados nos filtros.
   filtros = {
     ano: '',
     num_emenda: '',
@@ -28,6 +29,7 @@ export class EmendaComponent implements OnInit {
   constructor(private emendaService: EmendaService) { }
 
   ngOnInit() {
+    //Carrega as emendas do servidor.
     this.emendaService.getEmendas()
       .subscribe(emendas => {
         this.todasEmendas = emendas;
@@ -35,6 +37,7 @@ export class EmendaComponent implements OnInit {
       })
   }
 
+  //Método do filtro de emendas.
   filtroEmenda(filtros): any {
     if(!filtros.ano && !filtros.num_emenda && !filtros.autor && !filtros.partido && !filtros.cargo && !filtros.beneficiario && !filtros.status){      
       this.emendas = this.todasEmendas;

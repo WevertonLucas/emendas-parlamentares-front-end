@@ -16,6 +16,7 @@ import { Emenda } from '../emenda.model';
 })
 export class EmendaAdicionarEditarComponent implements OnInit {
   
+  //Variáveis que vão armazenar os dados que serão selecionados no formulário.
   legislacoes: any[];
   legislacao: any;
   ufs: any[];
@@ -30,10 +31,12 @@ export class EmendaAdicionarEditarComponent implements OnInit {
   projetos: any[];
   status: any[];
   instrumentos: any[];
-  valorGlobal: Number = 0;
-  editProjeto: boolean = false;
-  params: any;
+  
+  valorGlobal: Number = 0; //Variável que vai armazenar o valor global.
+  editProjeto: boolean = false; //Variável que permite a edição dos projetos no formulário.
+  params: any; //Variável que armazena o parâmetro de uma rota.
 
+  //Dados do formulário de Emenda.
   emendaForm: Emenda = {
     cod_emenda: null,
     num_emenda: null,
@@ -69,6 +72,7 @@ export class EmendaAdicionarEditarComponent implements OnInit {
     pendencia: null
   }
 
+  //Configuração da mascara de moeda.
   currencyOptions = {
     prefix: 'R$ ',
     thousands: '.',
@@ -78,6 +82,7 @@ export class EmendaAdicionarEditarComponent implements OnInit {
     align: 'left'
   };
 
+  //Valores do campo radio.
   impedimentoOptions: RadioOption[] = [{label: 'Sim', value:'1'}, {label: 'Não', value:'0'}]
 
   constructor(private emendaService: EmendaService,
@@ -86,8 +91,10 @@ export class EmendaAdicionarEditarComponent implements OnInit {
               private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    //Varifica se existe parâmetro na rota, se existir armazena na variável params.
     this.route.params.subscribe(res => this.params = res);
     
+    //Carrega as informações do servidor ao iniciar a página.
     this.getLegislacoes();
     this.getUfs();
     this.getAutores();
@@ -100,6 +107,7 @@ export class EmendaAdicionarEditarComponent implements OnInit {
     this.getStatus();
     this.getInstrumentos();
 
+    //Se existir parâmetro na rota irá buscar as informações da emenda com base nesse parâmetro. E colocar as informáções no formulário.
     if(this.params.id){
       this.emendaService.getEmendasById(this.params.id)
         .subscribe(dadosEmenda => {
@@ -130,11 +138,13 @@ export class EmendaAdicionarEditarComponent implements OnInit {
 
   }
 
+  //Busca as legislações no servidor.
   getLegislacoes() {
     this.legislacaoService.getLegislacoes()
       .subscribe(legislacoes => this.legislacoes = legislacoes)
   }
 
+  //Busca as informações de uma legislações no servidor utilizando o ano como parâmetro.
   getLegislacaoById(ano: number) {
     this.legislacaoService.getLegislacaoById(ano)
       .subscribe(legislacao => {
@@ -150,66 +160,79 @@ export class EmendaAdicionarEditarComponent implements OnInit {
       })
   }
 
+  //Busca as ufs no servidor.
   getUfs() {
     this.emendaService.getUfs()
       .subscribe(ufs => this.ufs = ufs)
   }
 
+  //Busca os municípios de uma uf no servidor.
   getMunicipiosByUf(uf: string) {
     this.emendaService.getMunicipiosByUf(uf)
       .subscribe(municipios => this.municipios = municipios)
   }
 
+  //Busca os autores no servidor.
   getAutores() {
     this.autorService.getAutores()
       .subscribe(autores => this.autores = autores)
   }
 
+  //Busca as informações de um autor no servidor utilizando o cod_autor como parâmetro.
   getAutorById(cod_autor: number) {
     this.autorService.getAutoresById(cod_autor)
       .subscribe(autor => this.autor = autor)
   }
 
+  //Busca as fontes no servidor.
   getFontes() {
     this.emendaService.getFontes()
       .subscribe(fontes => this.fontes = fontes)
   }
 
+  //Busca os gnds no servidor.
   getGnds() {
     this.emendaService.getGnds()
       .subscribe(gnd => this.gnds = gnd)
   }
 
+  //Busca as modalidades no servidor.
   getModalidades() {
     this.emendaService.getModalidades()
       .subscribe(modalidades => this.modalidades = modalidades)
   }
 
+  //Busca os programas no servidor.
   getProgramas() {
     this.emendaService.getProgramas()
       .subscribe(programas => this.programas = programas)
   }
 
+  //Busca as ações no servidor.
   getAcoes() {
     this.emendaService.getAcoes()
       .subscribe(acoes => this.acoes = acoes)
   }
 
+  //Busca os projetos no servidor.
   getProjetos() {
     this.emendaService.getProjetos()
       .subscribe(projetos => this.projetos = projetos)
   }
 
+  //Busca os status no servidor.
   getStatus() {
     this.emendaService.getStatus()
       .subscribe(status => this.status = status)
   }
 
+  //Busca os instrumentos no servidor.
   getInstrumentos() {
     this.emendaService.getInstrumentos()
       .subscribe(instrumentos => this.instrumentos = instrumentos)
   }
 
+  //Calcula o valor global, que é a soma entre o valor de repasse e o valor de contrapartida.
   getValorGlobal(valor_repasse: any, valor_contrapartida: any) {
     console.log(valor_repasse, valor_contrapartida);
     if(!valor_repasse) 
@@ -220,10 +243,18 @@ export class EmendaAdicionarEditarComponent implements OnInit {
     this.valorGlobal = Number(valor_repasse) + Number(valor_contrapartida);
   }
 
+  //Inverte o valor da variável que permite a edição dos projetos no formulário.
   editarProjeto(){
     this.editProjeto = !this.editProjeto;
   }
 
+  /*
+    Método que salva uma emenda a clicar no botão salvar.
+    Se existir algum valor na variável params, significa que a emenda já é existente,
+    portanto o método que deve ser disparado é um PUT, que irá atualizar esta emenda.
+    Se não existir valor na variável params, significa que estamos fazendo um cadastro,
+    portanto o método que deve ser disparado é um POST, que irá cadastrar a nova emenda.
+  */
   salvarEmenda(emenda: Emenda){
     emenda.projeto = this.emendaForm.cod_projeto;
 

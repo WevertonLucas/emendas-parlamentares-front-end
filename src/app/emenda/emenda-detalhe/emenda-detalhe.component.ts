@@ -11,11 +11,13 @@ import { EmendaService } from './../emenda.service';
 })
 export class EmendaDetalheComponent implements OnInit {
 
+  //Variável que armazena as informações da emenda.
   emenda: Emenda
 
   constructor(private emendaService: EmendaService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    //Busca as informações de uma emenda, utilizando o parâmetro da rota que é o identificador da emenda.
     this.emendaService.getEmendasById(this.route.snapshot.params['id'])
       .subscribe(emenda => this.emenda = emenda)
   }
